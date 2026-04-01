@@ -1,0 +1,76 @@
+@use '../../../styles/mixins' as *;
+
+.cta-section {
+  background-color: var(--color-walnut);
+  padding-block: clamp(var(--space-9), 14vw, 180px);
+  position: relative;
+  overflow: hidden;
+
+  // Top grain highlight
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(212, 160, 23, 0.07) 0%,
+      transparent 50%
+    );
+    pointer-events: none;
+  }
+
+  &__inner {
+    text-align: center;
+    max-width: 680px;
+    margin-inline: auto;
+  }
+
+  &__preface {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.6vw, 1.1875rem);
+    color: var(--color-vellum);
+    opacity: 0.75;
+    margin-bottom: var(--space-3);
+  }
+
+  &__headline {
+    font-family: var(--font-drama);
+    font-style: italic;
+    font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+    font-weight: 700;
+    color: var(--color-brass);
+    line-height: 1.1;
+    margin-bottom: var(--space-7);
+    position: relative;
+
+    // Candlelight warm radial glow behind the text
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -40% -20%;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(212, 160, 23, 0.12) 0%,
+        rgba(212, 160, 23, 0.04) 45%,
+        transparent 70%
+      );
+      pointer-events: none;
+      z-index: -1;
+    }
+  }
+
+  &__btn {
+    @include btn-brass;
+    padding: 18px 48px;
+    font-size: 1.0625rem;
+    letter-spacing: 0.08em;
+
+    @include motion-safe {
+      &:hover {
+        box-shadow:
+          0 4px 16px rgba(184, 134, 11, 0.3),
+          0 0 0 3px rgba(184, 134, 11, 0.25);
+      }
+    }
+  }
+}

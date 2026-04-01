@@ -1,0 +1,115 @@
+// Breakpoints
+@mixin tablet {
+  @media (min-width: 768px) { @content; }
+}
+
+@mixin desktop {
+  @media (min-width: 1024px) { @content; }
+}
+
+@mixin wide {
+  @media (min-width: 1280px) { @content; }
+}
+
+// Reduced motion
+@mixin motion-safe {
+  @media (prefers-reduced-motion: no-preference) { @content; }
+}
+
+// Brass button base
+@mixin btn-brass {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 12px 28px;
+  background-color: var(--color-brass);
+  color: var(--color-linen);
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  overflow: hidden;
+  position: relative;
+  transition:
+    transform var(--transition-base),
+    background-color var(--transition-base),
+    box-shadow var(--transition-base);
+
+  // Brass gleam sweep
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.08) 50%,
+      transparent 70%
+    );
+    transform: translateX(-100%);
+    transition: transform 0ms;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  @include motion-safe {
+    &:hover {
+      transform: scale(1.02);
+      background-color: var(--color-brass-light);
+      box-shadow: 0 4px 16px rgba(184, 134, 11, 0.3);
+
+      &::before {
+        transform: translateX(100%);
+        transition: transform 600ms ease;
+      }
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-brass-light);
+    outline-offset: 3px;
+  }
+
+  &:active {
+    transform: scale(0.99);
+  }
+}
+
+// Animated underline link
+@mixin link-underline($color: var(--color-brass)) {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: $color;
+    transition: width var(--transition-base);
+  }
+
+  &:hover::after,
+  &:focus-visible::after {
+    width: 100%;
+  }
+}
+
+// Fade-up reveal
+@mixin fade-up($delay: 0ms) {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity var(--transition-reveal) #{$delay},
+    transform var(--transition-reveal) #{$delay};
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,362 @@
+@use '../../../styles/mixins' as *;
+
+.features {
+  background-color: var(--color-parchment);
+  padding-block: clamp(var(--space-9), 12vw, 160px);
+
+  &__header {
+    margin-bottom: var(--space-8);
+  }
+
+  &__kicker {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-brass);
+    margin-bottom: var(--space-3);
+  }
+
+  &__heading {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    color: var(--color-ink);
+    letter-spacing: -0.02em;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include desktop {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__card {
+    background-color: var(--color-vellum);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    transition: box-shadow var(--transition-base);
+    border: 1px solid rgba(59, 42, 26, 0.06);
+
+    @include motion-safe {
+      &:hover {
+        box-shadow: var(--shadow-card-hover);
+      }
+    }
+  }
+
+  &__card-footer {
+    margin-top: auto;
+    padding-top: var(--space-4);
+    border-top: 1px solid rgba(59, 42, 26, 0.1);
+  }
+
+  &__card-name {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-brass);
+    margin-bottom: var(--space-2);
+  }
+
+  &__card-desc {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: var(--color-iron);
+    line-height: 1.6;
+  }
+}
+
+// ---- Card 1: Type Drawer ----
+.drawer {
+  &__stack {
+    position: relative;
+    height: 180px;
+    flex-shrink: 0;
+  }
+
+  &__ticket {
+    position: absolute;
+    inset-inline: 0;
+    background-color: var(--color-linen);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
+    border: 1px solid rgba(59, 42, 26, 0.1);
+    box-shadow: 0 2px 8px rgba(28, 24, 18, 0.07);
+    transition:
+      opacity var(--transition-slow),
+      transform var(--transition-slow),
+      z-index 0ms;
+
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+    pointer-events: none;
+    z-index: 0;
+
+    &--active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      z-index: 3;
+      pointer-events: auto;
+    }
+
+    &--behind-1 {
+      opacity: 0.6;
+      transform: translateY(8px) scale(0.975) rotate(1.2deg);
+      z-index: 2;
+    }
+
+    &--behind-2 {
+      opacity: 0.3;
+      transform: translateY(14px) scale(0.955) rotate(-1.8deg);
+      z-index: 1;
+    }
+  }
+
+  &__ticket-label {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-brass);
+    background-color: rgba(184, 134, 11, 0.1);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-3);
+  }
+
+  &__ticket-title {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    margin-bottom: var(--space-2);
+    line-height: 1.3;
+  }
+
+  &__ticket-body {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--color-iron);
+    line-height: 1.55;
+  }
+
+  &__dots {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    margin-top: var(--space-2);
+  }
+
+  &__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: rgba(59, 42, 26, 0.2);
+    transition: background-color var(--transition-fast);
+
+    &--active {
+      background-color: var(--color-brass);
+    }
+  }
+}
+
+// ---- Card 2: Press Log ----
+.press {
+  &__terminal {
+    background-color: #1a1510;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    flex-shrink: 0;
+    min-height: 200px;
+    border: 1px solid rgba(184, 134, 11, 0.15);
+  }
+
+  &__terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background-color: #221c15;
+    border-bottom: 1px solid rgba(184, 134, 11, 0.12);
+  }
+
+  &__terminal-title {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: rgba(250, 247, 240, 0.35);
+    margin-inline-start: auto;
+  }
+
+  &__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+
+    &--red    { background-color: #e05252; }
+    &--amber  { background-color: #e0a852; }
+    &--green  { background-color: #52c46e; }
+  }
+
+  &__log {
+    padding: var(--space-4);
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__line {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: rgba(250, 247, 240, 0.55);
+    line-height: 1.5;
+
+    @include motion-safe {
+      animation: line-appear 200ms ease both;
+    }
+
+    &--success {
+      color: #7ecf9a;
+      position: relative;
+
+      @include motion-safe {
+        animation: line-appear 200ms ease both, success-bloom 600ms 200ms ease both;
+      }
+    }
+  }
+
+  &__cursor {
+    display: inline-block;
+    width: 8px;
+    height: 13px;
+    background-color: var(--color-brass);
+    vertical-align: text-bottom;
+    margin-inline-start: 2px;
+
+    @include motion-safe {
+      animation: cursor-blink 900ms step-end infinite;
+    }
+  }
+}
+
+@keyframes line-appear {
+  from { opacity: 0; transform: translateX(-4px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+// ---- Card 3: Binding Schedule ----
+.schedule {
+  &__grid {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  &__week {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: var(--space-2);
+  }
+
+  &__day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  &__day-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.04em;
+    color: var(--color-iron);
+    transition: color var(--transition-fast);
+
+    .schedule__day--active & {
+      color: var(--color-brass);
+      font-weight: 500;
+    }
+  }
+
+  &__day-bar {
+    width: 100%;
+    height: 48px;
+    border-radius: var(--radius-sm);
+    background-color: rgba(59, 42, 26, 0.1);
+    transition:
+      background-color var(--transition-fast),
+      box-shadow var(--transition-fast);
+
+    .schedule__day--active & {
+      background-color: var(--color-brass);
+      box-shadow: 0 0 12px rgba(212, 160, 23, 0.45), 0 0 24px rgba(184, 134, 11, 0.2);
+
+      @include motion-safe {
+        animation: day-pulse 2s ease-in-out infinite;
+      }
+    }
+  }
+
+  &__callout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3) var(--space-4);
+    background-color: rgba(184, 134, 11, 0.08);
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(184, 134, 11, 0.2);
+  }
+
+  &__callout-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-iron);
+  }
+
+  &__callout-value {
+    font-family: var(--font-heading);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-brass);
+  }
+}
+
+@keyframes success-bloom {
+  0%   { text-shadow: none; }
+  40%  { text-shadow: 0 0 14px rgba(82, 196, 110, 0.55), 0 0 28px rgba(82, 196, 110, 0.25); }
+  100% { text-shadow: 0 0 8px rgba(82, 196, 110, 0.2); }
+}
+
+@keyframes day-pulse {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(212, 160, 23, 0.45), 0 0 24px rgba(184, 134, 11, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(212, 160, 23, 0.65), 0 0 40px rgba(184, 134, 11, 0.3);
+  }
+}
