@@ -14,15 +14,30 @@
         </a>
       </li>
       <li>
-        <a routerLink="/projects" class="navbar__link" routerLinkActive="navbar__link--active" data-testid="nav-projects">
-          Projects
-        </a>
-      </li>
-      <li>
-        <a routerLink="/" fragment="commission" class="navbar__link navbar__link--cta" data-testid="nav-cta">
+        <a href="mailto:brian&#64;unwrittenco.com" class="navbar__link navbar__link--cta" data-testid="nav-cta">
           Let's talk
         </a>
       </li>
     </ul>
+
+    <button
+      class="navbar__burger"
+      (click)="toggleMobile()"
+      [attr.aria-expanded]="mobileOpen()"
+      aria-controls="mobile-nav"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar__burger-bar" aria-hidden="true"></span>
+      <span class="navbar__burger-bar" aria-hidden="true"></span>
+    </button>
   </div>
+
+  @if (mobileOpen()) {
+    <div class="navbar__mobile" id="mobile-nav" role="menu">
+      <a routerLink="/about" class="navbar__mobile-link" routerLinkActive="navbar__mobile-link--active" (click)="closeMobile()">About</a>
+      <a routerLink="/team" class="navbar__mobile-link" routerLinkActive="navbar__mobile-link--active" (click)="closeMobile()">Team</a>
+      <a href="https://journal.unwrittenco.com" target="_blank" rel="noopener" class="navbar__mobile-link" (click)="closeMobile()">Journal</a>
+      <a href="mailto:brian&#64;unwrittenco.com" class="navbar__mobile-link navbar__mobile-link--cta" (click)="closeMobile()">Let's talk</a>
+    </div>
+  }
 </nav>

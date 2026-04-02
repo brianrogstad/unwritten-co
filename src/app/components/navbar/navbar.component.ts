@@ -2,7 +2,6 @@ import {
   Component,
   ChangeDetectionStrategy,
   signal,
-  computed,
   Input,
   OnInit,
   OnDestroy,
@@ -27,7 +26,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   @Input() lightBg = false;
 
   readonly isScrolled = signal(false);
-  readonly showSolid = computed(() => this.lightBg || this.isScrolled());
+  readonly mobileOpen = signal(false);
 
   private scrollHandler = (): void => {
     this.isScrolled.set(window.scrollY > 48);
@@ -45,4 +44,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }
   }
 
+  toggleMobile(): void {
+    this.mobileOpen.update((v) => !v);
+  }
+
+  closeMobile(): void {
+    this.mobileOpen.set(false);
+  }
 }

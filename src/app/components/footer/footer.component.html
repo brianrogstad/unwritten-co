@@ -9,17 +9,10 @@
 
       <nav class="footer__nav" aria-label="Footer navigation">
         <ul class="footer__nav-list" role="list">
-          @for (link of navLinks; track link.id) {
-            <li>
-              <button
-                class="footer__nav-link"
-                (click)="scrollTo(link.id)"
-                [attr.data-testid]="'footer-nav-' + link.id"
-              >
-                {{ link.label }}
-              </button>
-            </li>
-          }
+          <li><a routerLink="/about" class="footer__nav-link">About</a></li>
+          <li><a routerLink="/team" class="footer__nav-link">Team</a></li>
+          <li><a href="https://journal.unwrittenco.com" target="_blank" rel="noopener" class="footer__nav-link">Journal</a></li>
+          <li><a href="mailto:brian&#64;unwrittenco.com" class="footer__nav-link">Contact</a></li>
         </ul>
       </nav>
 

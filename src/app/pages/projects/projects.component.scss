@@ -1,13 +1,13 @@
 @use '../../../styles/mixins' as *;
 
-.projects {
+.how-we-work {
   background-color: var(--color-parchment);
   padding-top: 96px;
   padding-bottom: var(--space-9);
-  min-height: 60vh;
 
   &__header {
     max-width: 640px;
+    margin-bottom: var(--space-8);
   }
 
   &__kicker {
@@ -33,6 +33,31 @@
     font-size: 1.0625rem;
     line-height: 1.7;
     color: var(--color-iron);
+  }
+
+  &__section {
+    max-width: 640px;
+    margin-bottom: var(--space-7);
+
+    h2 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--color-ink);
+      margin-bottom: var(--space-4);
+    }
+
+    p {
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--color-iron);
+      margin-bottom: var(--space-4);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 }
 

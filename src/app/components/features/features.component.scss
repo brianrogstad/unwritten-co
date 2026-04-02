@@ -47,8 +47,8 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-5);
-    transition: box-shadow var(--transition-base);
     border: 1px solid rgba(59, 42, 26, 0.06);
+    transition: box-shadow var(--transition-base);
 
     @include motion-safe {
       &:hover {
@@ -82,281 +82,137 @@
   }
 }
 
-// ---- Card 1: Type Drawer ----
-.drawer {
-  &__stack {
-    position: relative;
-    height: 180px;
-    flex-shrink: 0;
-  }
+// ---- Card 1: The Team (big number) ----
+.card__visual {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  min-height: 140px;
+  align-items: center;
+}
 
-  &__ticket {
-    position: absolute;
-    inset-inline: 0;
-    background-color: var(--color-linen);
-    border-radius: var(--radius-md);
-    padding: var(--space-4) var(--space-5);
-    border: 1px solid rgba(59, 42, 26, 0.1);
-    box-shadow: 0 2px 8px rgba(28, 24, 18, 0.07);
-    transition:
-      opacity var(--transition-slow),
-      transform var(--transition-slow),
-      z-index 0ms;
+.card__number {
+  font-family: var(--font-drama);
+  font-style: italic;
+  font-size: clamp(5rem, 8vw, 7rem);
+  font-weight: 700;
+  color: var(--color-brass);
+  line-height: 1;
+}
 
-    opacity: 0;
-    transform: translateY(16px) scale(0.96);
-    pointer-events: none;
-    z-index: 0;
+.card__unit {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--color-iron);
+  letter-spacing: 0.02em;
+}
 
-    &--active {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      z-index: 3;
-      pointer-events: auto;
-    }
+// ---- Card 2: The Night Shift (job grid) ----
+.card__visual--grid {
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: flex-start;
+  align-content: flex-start;
+}
 
-    &--behind-1 {
-      opacity: 0.6;
-      transform: translateY(8px) scale(0.975) rotate(1.2deg);
-      z-index: 2;
-    }
+.card__job {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  background-color: rgba(59, 42, 26, 0.05);
+  border: 1px solid rgba(59, 42, 26, 0.08);
 
-    &--behind-2 {
-      opacity: 0.3;
-      transform: translateY(14px) scale(0.955) rotate(-1.8deg);
-      z-index: 1;
-    }
-  }
-
-  &__ticket-label {
-    display: inline-block;
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color-brass);
-    background-color: rgba(184, 134, 11, 0.1);
-    padding: 2px 8px;
-    border-radius: var(--radius-sm);
-    margin-bottom: var(--space-3);
-  }
-
-  &__ticket-title {
-    font-family: var(--font-heading);
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-ink);
-    margin-bottom: var(--space-2);
-    line-height: 1.3;
-  }
-
-  &__ticket-body {
-    font-family: var(--font-body);
-    font-size: 0.875rem;
-    color: var(--color-iron);
-    line-height: 1.55;
-  }
-
-  &__dots {
-    display: flex;
-    gap: 6px;
-    justify-content: center;
-    margin-top: var(--space-2);
-  }
-
-  &__dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: rgba(59, 42, 26, 0.2);
-    transition: background-color var(--transition-fast);
-
-    &--active {
-      background-color: var(--color-brass);
+  &--active {
+    .card__job-dot {
+      background-color: var(--color-verdigris);
+      box-shadow: 0 0 4px rgba(46, 107, 90, 0.4);
     }
   }
 }
 
-// ---- Card 2: Press Log ----
-.press {
-  &__terminal {
-    background-color: #1a1510;
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    flex-shrink: 0;
-    min-height: 200px;
-    border: 1px solid rgba(184, 134, 11, 0.15);
-  }
-
-  &__terminal-bar {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 14px;
-    background-color: #221c15;
-    border-bottom: 1px solid rgba(184, 134, 11, 0.12);
-  }
-
-  &__terminal-title {
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    color: rgba(250, 247, 240, 0.35);
-    margin-inline-start: auto;
-  }
-
-  &__dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-
-    &--red    { background-color: #e05252; }
-    &--amber  { background-color: #e0a852; }
-    &--green  { background-color: #52c46e; }
-  }
-
-  &__log {
-    padding: var(--space-4);
-    min-height: 160px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  &__line {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: rgba(250, 247, 240, 0.55);
-    line-height: 1.5;
-
-    @include motion-safe {
-      animation: line-appear 200ms ease both;
-    }
-
-    &--success {
-      color: #7ecf9a;
-      position: relative;
-
-      @include motion-safe {
-        animation: line-appear 200ms ease both, success-bloom 600ms 200ms ease both;
-      }
-    }
-  }
-
-  &__cursor {
-    display: inline-block;
-    width: 8px;
-    height: 13px;
-    background-color: var(--color-brass);
-    vertical-align: text-bottom;
-    margin-inline-start: 2px;
-
-    @include motion-safe {
-      animation: cursor-blink 900ms step-end infinite;
-    }
-  }
+.card__job-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: rgba(59, 42, 26, 0.25);
+  flex-shrink: 0;
 }
 
-@keyframes line-appear {
-  from { opacity: 0; transform: translateX(-4px); }
-  to   { opacity: 1; transform: translateX(0); }
+.card__job-name {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.02em;
+  color: var(--color-iron);
 }
 
-@keyframes cursor-blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
+// ---- Card 3: The Human (portrait + chain) ----
+.card__visual--solo {
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  justify-content: center;
 }
 
-// ---- Card 3: Binding Schedule ----
-.schedule {
-  &__grid {
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-  }
-
-  &__week {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: var(--space-2);
-  }
-
-  &__day {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-2);
-  }
-
-  &__day-label {
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.04em;
-    color: var(--color-iron);
-    transition: color var(--transition-fast);
-
-    .schedule__day--active & {
-      color: var(--color-brass);
-      font-weight: 500;
-    }
-  }
-
-  &__day-bar {
-    width: 100%;
-    height: 48px;
-    border-radius: var(--radius-sm);
-    background-color: rgba(59, 42, 26, 0.1);
-    transition:
-      background-color var(--transition-fast),
-      box-shadow var(--transition-fast);
-
-    .schedule__day--active & {
-      background-color: var(--color-brass);
-      box-shadow: 0 0 12px rgba(212, 160, 23, 0.45), 0 0 24px rgba(184, 134, 11, 0.2);
-
-      @include motion-safe {
-        animation: day-pulse 2s ease-in-out infinite;
-      }
-    }
-  }
-
-  &__callout {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: var(--space-3) var(--space-4);
-    background-color: rgba(184, 134, 11, 0.08);
-    border-radius: var(--radius-sm);
-    border: 1px solid rgba(184, 134, 11, 0.2);
-  }
-
-  &__callout-label {
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--color-iron);
-  }
-
-  &__callout-value {
-    font-family: var(--font-heading);
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--color-brass);
-  }
+.card__portrait {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--color-brass);
+  flex-shrink: 0;
 }
 
-@keyframes success-bloom {
-  0%   { text-shadow: none; }
-  40%  { text-shadow: 0 0 14px rgba(82, 196, 110, 0.55), 0 0 28px rgba(82, 196, 110, 0.25); }
-  100% { text-shadow: 0 0 8px rgba(82, 196, 110, 0.2); }
+.card__portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
 }
 
-@keyframes day-pulse {
-  0%, 100% {
-    box-shadow: 0 0 12px rgba(212, 160, 23, 0.45), 0 0 24px rgba(184, 134, 11, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(212, 160, 23, 0.65), 0 0 40px rgba(184, 134, 11, 0.3);
-  }
+.card__chain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: var(--space-1) 0;
+}
+
+.card__chain-line {
+  width: 1px;
+  height: 12px;
+  background-color: rgba(59, 42, 26, 0.15);
+}
+
+.card__chain-label {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-iron);
+  padding: 2px 0;
+}
+
+.card__human {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.card__human-name {
+  font-family: var(--font-heading);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.card__human-role {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-iron);
 }

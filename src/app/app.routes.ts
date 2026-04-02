@@ -17,13 +17,6 @@ export const routes: Routes = [
       import('./pages/team/team.component').then((m) => m.TeamComponent),
   },
   {
-    path: 'projects',
-    loadComponent: () =>
-      import('./pages/projects/projects.component').then(
-        (m) => m.ProjectsComponent,
-      ),
-  },
-  {
     path: '**',
     redirectTo: '',
   },

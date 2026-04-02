@@ -1,105 +1,72 @@
 <section class="features" id="work" aria-labelledby="features-heading">
   <div class="container">
     <header class="features__header">
-      <p class="features__kicker reveal" data-testid="features-kicker">The workshop</p>
+      <p class="features__kicker reveal" data-testid="features-kicker">How it works</p>
       <h2 class="features__heading reveal reveal--delay-1" id="features-heading" data-testid="features-heading">
-        Tools on the workbench
+        The studio, in numbers
       </h2>
     </header>
 
     <div class="features__grid">
 
-      <!-- Card 1: The Type Drawer -->
-      <article
-        class="features__card features__card--drawer reveal"
-        id="process"
-        data-testid="features-card-drawer"
-        aria-label="Discovery and strategy"
-      >
-        <div class="drawer__stack" aria-live="polite">
-          @for (card of typeDrawerCards; track card.label; let i = $index) {
-            <div
-              class="drawer__ticket"
-              [class.drawer__ticket--active]="activeCard() === i"
-              [class.drawer__ticket--behind-1]="(activeCard() + 1) % typeDrawerCards.length === i"
-              [class.drawer__ticket--behind-2]="(activeCard() + 2) % typeDrawerCards.length === i"
-              [attr.aria-hidden]="activeCard() !== i"
-            >
-              <span class="drawer__ticket-label">{{ card.label }}</span>
-              <h3 class="drawer__ticket-title">{{ card.title }}</h3>
-              <p class="drawer__ticket-body">{{ card.body }}</p>
+      <article class="features__card reveal" aria-label="The team">
+        <div class="card__visual">
+          <span class="card__number">25</span>
+          <span class="card__unit">agents</span>
+        </div>
+        <div class="features__card-footer">
+          <span class="features__card-name">The Team</span>
+          <p class="features__card-desc">
+            Four departments — business, delivery, experience, operations.
+            Each with a lead, a specialty, and the autonomy to push back.
+          </p>
+        </div>
+      </article>
+
+      <article class="features__card reveal reveal--delay-1" aria-label="The night shift">
+        <div class="card__visual card__visual--grid">
+          @for (job of nightlyJobs; track job.name) {
+            <div class="card__job" [class.card__job--active]="job.active">
+              <span class="card__job-dot"></span>
+              <span class="card__job-name">{{ job.name }}</span>
             </div>
           }
         </div>
         <div class="features__card-footer">
-          <span class="features__card-name">The Type Drawer</span>
-          <p class="features__card-desc">Discovery & strategy — before we write a line of code, we understand what we're making.</p>
-        </div>
-        <div class="drawer__dots" aria-hidden="true">
-          @for (card of typeDrawerCards; track card.label; let i = $index) {
-            <span class="drawer__dot" [class.drawer__dot--active]="activeCard() === i"></span>
-          }
+          <span class="features__card-name">The Night Shift</span>
+          <p class="features__card-desc">
+            27 automated jobs run every night. Code review, security audits,
+            backlog grooming, content generation — all before morning.
+          </p>
         </div>
       </article>
 
-      <!-- Card 2: The Press Log -->
-      <article
-        class="features__card features__card--press"
-        data-testid="features-card-press"
-        aria-label="Design and development"
-      >
-        <div class="press__terminal" aria-label="Terminal log">
-          <div class="press__terminal-bar" aria-hidden="true">
-            <span class="press__dot press__dot--red"></span>
-            <span class="press__dot press__dot--amber"></span>
-            <span class="press__dot press__dot--green"></span>
-            <span class="press__terminal-title">unwritten — build</span>
+      <article class="features__card reveal reveal--delay-2" aria-label="The decision maker">
+        <div class="card__visual card__visual--solo">
+          <div class="card__portrait">
+            <img
+              src="personas/Ana-Steele.png"
+              alt="Ana Steele"
+              class="card__portrait-img"
+              loading="lazy"
+            />
           </div>
-          <div class="press__log" role="log" aria-label="Build log">
-            @for (line of typewriterLines(); track $index) {
-              @if (line.visible) {
-                <p class="press__line" [class.press__line--success]="line.text.includes('complete')">
-                  {{ line.text }}
-                  @if ($last && line.visible) {
-                    <span class="press__cursor" aria-hidden="true"></span>
-                  }
-                </p>
-              }
-            }
+          <div class="card__chain">
+            <span class="card__chain-line"></span>
+            <span class="card__chain-label">reports to</span>
+            <span class="card__chain-line"></span>
+          </div>
+          <div class="card__human">
+            <span class="card__human-name">Brian</span>
+            <span class="card__human-role">Founder</span>
           </div>
         </div>
         <div class="features__card-footer">
-          <span class="features__card-name">The Press Log</span>
-          <p class="features__card-desc">Design & development — every detail is set by hand, every component tested before it ships.</p>
-        </div>
-      </article>
-
-      <!-- Card 3: The Binding Schedule -->
-      <article
-        class="features__card features__card--schedule"
-        data-testid="features-card-schedule"
-        aria-label="Delivery and shipping"
-      >
-        <div class="schedule__grid" aria-label="Weekly schedule">
-          <div class="schedule__week" aria-hidden="true">
-            @for (day of days; track day + $index; let i = $index) {
-              <div
-                class="schedule__day"
-                [class.schedule__day--active]="activeDayIndex() === i"
-              >
-                <span class="schedule__day-label">{{ day }}</span>
-                <span class="schedule__day-bar"></span>
-              </div>
-            }
-          </div>
-          <div class="schedule__callout">
-            <span class="schedule__callout-label">Current sprint</span>
-            <span class="schedule__callout-value">Week 4 of 6</span>
-          </div>
-        </div>
-        <div class="features__card-footer">
-          <span class="features__card-name">The Binding Schedule</span>
-          <p class="features__card-desc">Delivery & shipping — predictable cadence, honest communication, no surprises at the finish line.</p>
+          <span class="features__card-name">The Human</span>
+          <p class="features__card-desc">
+            One person makes the decisions, reviews the work, and breaks the ties.
+            Everything else is handled by the team he built.
+          </p>
         </div>
       </article>
 
