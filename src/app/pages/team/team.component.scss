@@ -1,0 +1,316 @@
+@use '../../../styles/mixins' as *;
+
+// Team colors — mapped to Letterpress palette
+:host {
+  --team-founder: var(--color-walnut);
+  --team-director: var(--color-brass);
+  --team-business: var(--color-verdigris);
+  --team-delivery: var(--color-brass);
+  --team-experience: var(--color-iron);
+  --team-operations: var(--color-walnut);
+}
+
+.team {
+  background-color: var(--color-parchment);
+  padding-top: 96px;
+  padding-bottom: var(--space-9);
+
+  &__header {
+    max-width: 640px;
+    margin-bottom: var(--space-8);
+  }
+
+  &__kicker {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-brass);
+    margin-bottom: var(--space-3);
+  }
+
+  &__heading {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 700;
+    color: var(--color-ink);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-5);
+  }
+
+  &__intro {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--color-iron);
+  }
+
+}
+
+// ---- Portrait Wall ----
+.wall {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-7);
+
+  @include tablet {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include desktop {
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--space-5);
+  }
+
+  @include wide {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  &__frame {
+    display: flex;
+    flex-direction: column;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: center;
+    transition: transform var(--transition-base);
+
+    @include motion-safe {
+      &:hover {
+        transform: translateY(-4px);
+
+        .wall__portrait {
+          box-shadow: var(--shadow-card-hover);
+        }
+
+        .wall__img {
+          transform: scale(1.05);
+        }
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-brass);
+      outline-offset: 4px;
+      border-radius: var(--radius-md);
+    }
+
+    &--selected {
+      .wall__portrait {
+        box-shadow: var(--shadow-card-hover);
+      }
+
+      .wall__name {
+        color: var(--color-ink);
+      }
+    }
+
+    // Team border accents on selected
+    &--founder.wall__frame--selected .wall__portrait { border-color: var(--team-founder); }
+    &--director.wall__frame--selected .wall__portrait { border-color: var(--team-director); }
+    &--business.wall__frame--selected .wall__portrait { border-color: var(--team-business); }
+    &--delivery.wall__frame--selected .wall__portrait { border-color: var(--team-delivery); }
+    &--experience.wall__frame--selected .wall__portrait { border-color: var(--team-experience); }
+    &--operations.wall__frame--selected .wall__portrait { border-color: var(--team-operations); }
+  }
+
+  &__portrait {
+    aspect-ratio: 3 / 4;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background-color: var(--color-vellum);
+    box-shadow: var(--shadow-card);
+    border: 2px solid transparent;
+    transition:
+      box-shadow var(--transition-base),
+      border-color var(--transition-base);
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform var(--transition-slow);
+  }
+
+  &__nameplate {
+    padding-top: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__name {
+    font-family: var(--font-heading);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-walnut);
+    transition: color var(--transition-fast);
+    line-height: 1.3;
+  }
+
+  &__role {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-iron);
+  }
+}
+
+// ---- Detail Card ----
+.detail {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-vellum);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(59, 42, 26, 0.06);
+  border-left: 3px solid var(--color-brass);
+  overflow: hidden;
+  margin-bottom: var(--space-5);
+
+  @include tablet {
+    flex-direction: row;
+  }
+
+  // Team border colors
+  &--founder { border-left-color: var(--team-founder); }
+  &--director { border-left-color: var(--team-director); }
+  &--business { border-left-color: var(--team-business); }
+  &--delivery { border-left-color: var(--team-delivery); }
+  &--experience { border-left-color: var(--team-experience); }
+  &--operations { border-left-color: var(--team-operations); }
+
+  &__portrait {
+    width: 100%;
+    max-height: 280px;
+    overflow: hidden;
+    flex-shrink: 0;
+
+    @include tablet {
+      width: 200px;
+      max-height: none;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+
+  &__content {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  &__team {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-brass);
+  }
+
+  &__name {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    line-height: 1.2;
+  }
+
+  &__link {
+    color: var(--color-ink);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+
+    &:hover {
+      color: var(--color-brass);
+    }
+  }
+
+  &__arrow {
+    display: inline-block;
+    font-size: 1rem;
+    margin-left: var(--space-2);
+    transition: transform var(--transition-fast);
+
+    .detail__link:hover & {
+      transform: translateX(4px);
+    }
+  }
+
+  &__role {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: var(--color-iron);
+    margin-top: calc(-1 * var(--space-2));
+  }
+
+  &__desc {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-iron);
+  }
+
+  &__traits {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+  }
+
+  &__trait {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.04em;
+    padding: 3px 10px;
+    border-radius: var(--radius-sm);
+    background-color: rgba(59, 42, 26, 0.06);
+    color: var(--color-iron);
+    border: 1px solid rgba(59, 42, 26, 0.1);
+  }
+
+  &__journal {
+    display: inline-block;
+    margin-top: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-brass);
+    text-decoration: none;
+    padding-bottom: 1px;
+    border-bottom: 1px solid rgba(184, 134, 11, 0.3);
+    transition: border-color var(--transition-fast);
+
+    &:hover {
+      border-bottom-color: var(--color-brass);
+    }
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: var(--space-5);
+
+  @include tablet {
+    padding-inline: var(--space-6);
+  }
+
+  @include desktop {
+    padding-inline: var(--space-7);
+  }
+}

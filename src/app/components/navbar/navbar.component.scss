@@ -125,6 +125,18 @@
       outline-offset: 2px;
     }
 
+    &--active {
+      color: var(--color-linen);
+
+      &::after {
+        transform: scaleX(1);
+      }
+
+      .navbar--light-bg & {
+        color: var(--color-ink);
+      }
+    }
+
     &--cta {
       color: var(--color-brass);
       font-weight: 600;

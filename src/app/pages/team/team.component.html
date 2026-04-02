@@ -1,0 +1,79 @@
+<app-navbar [lightBg]="true" />
+
+<main class="team">
+  <div class="container">
+
+    <header class="team__header">
+      <p class="team__kicker">The people</p>
+      <h1 class="team__heading">One human. Twenty-five agents.</h1>
+      <p class="team__intro">
+        Each with a name, a role, and real accountability. This is who
+        builds our stuff.
+      </p>
+    </header>
+
+    <!-- Portrait Wall -->
+    <div class="wall">
+      @for (agent of agents; track agent.name) {
+        <button
+          class="wall__frame"
+          [class]="'wall__frame--' + agent.team"
+          [class.wall__frame--selected]="selectedAgent() === agent"
+          (click)="selectAgent(agent)"
+          [attr.aria-label]="agent.fullName + ', ' + agent.role"
+        >
+          <div class="wall__portrait">
+            <img
+              [src]="agent.image"
+              [alt]="agent.fullName"
+              class="wall__img"
+              loading="lazy"
+            />
+          </div>
+          <div class="wall__nameplate">
+            <span class="wall__name">{{ agent.name }}</span>
+            <span class="wall__role">{{ agent.role }}</span>
+          </div>
+        </button>
+      }
+    </div>
+
+    <!-- Selected Agent Detail -->
+    @if (selectedAgent(); as agent) {
+      <div class="detail" [class]="'detail--' + agent.team">
+        <div class="detail__portrait">
+          <img [src]="agent.image" [alt]="agent.fullName" class="detail__img" />
+        </div>
+        <div class="detail__content">
+          <span class="detail__team">{{ getTeamLabel(agent.team) }}</span>
+          <h2 class="detail__name">
+            @if (agent.externalUrl) {
+              <a [href]="agent.externalUrl" target="_blank" rel="noopener" class="detail__link">
+                {{ agent.fullName }}
+                <span class="detail__arrow" aria-hidden="true">&rarr;</span>
+              </a>
+            } @else {
+              {{ agent.fullName }}
+            }
+          </h2>
+          <p class="detail__role">{{ agent.role }}</p>
+          <p class="detail__desc">{{ agent.description }}</p>
+          <div class="detail__traits">
+            @for (trait of agent.traits; track trait) {
+              <span class="detail__trait">{{ trait }}</span>
+            }
+          </div>
+          @if (agent.externalUrl) {
+            <a [href]="agent.externalUrl" target="_blank" rel="noopener" class="detail__journal">
+              Read her journal
+            </a>
+          }
+        </div>
+      </div>
+    }
+
+
+  </div>
+</main>
+
+<app-footer />

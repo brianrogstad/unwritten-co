@@ -4,24 +4,24 @@
 
     <ul class="navbar__links" role="list">
       <li>
-        <button class="navbar__link" (click)="scrollTo('work')" data-testid="nav-work">
-          Work
-        </button>
+        <a routerLink="/about" class="navbar__link" routerLinkActive="navbar__link--active" data-testid="nav-about">
+          About
+        </a>
       </li>
       <li>
-        <button class="navbar__link" (click)="scrollTo('philosophy')" data-testid="nav-philosophy">
-          Philosophy
-        </button>
+        <a routerLink="/team" class="navbar__link" routerLinkActive="navbar__link--active" data-testid="nav-team">
+          Team
+        </a>
       </li>
       <li>
-        <button class="navbar__link" (click)="scrollTo('process')" data-testid="nav-process">
-          Process
-        </button>
+        <a routerLink="/projects" class="navbar__link" routerLinkActive="navbar__link--active" data-testid="nav-projects">
+          Projects
+        </a>
       </li>
-<li>
-        <button class="navbar__link navbar__link--cta" (click)="scrollTo('commission')" data-testid="nav-cta">
+      <li>
+        <a routerLink="/" fragment="commission" class="navbar__link navbar__link--cta" data-testid="nav-cta">
           Let's talk
-        </button>
+        </a>
       </li>
     </ul>
   </div>
