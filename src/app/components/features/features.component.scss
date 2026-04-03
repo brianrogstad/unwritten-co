@@ -80,6 +80,19 @@
     color: var(--color-iron);
     line-height: 1.6;
   }
+
+  &__card-link {
+    display: inline-block;
+    margin-top: var(--space-2);
+    color: var(--color-brass);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+
+    &:hover {
+      color: var(--color-walnut);
+    }
+  }
 }
 
 // ---- Card 1: The Team (big number) ----

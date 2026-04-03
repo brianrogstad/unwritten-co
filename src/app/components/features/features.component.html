@@ -1,15 +1,15 @@
 <section class="features" id="work" aria-labelledby="features-heading">
   <div class="container">
     <header class="features__header">
-      <p class="features__kicker reveal" data-testid="features-kicker">How it works</p>
+      <p class="features__kicker reveal" data-testid="features-kicker">What it looks like</p>
       <h2 class="features__heading reveal reveal--delay-1" id="features-heading" data-testid="features-heading">
-        The studio, in numbers
+        On a typical day
       </h2>
     </header>
 
     <div class="features__grid">
 
-      <article class="features__card reveal" aria-label="The team">
+      <article class="features__card reveal" aria-label="25 agents">
         <div class="card__visual">
           <span class="card__number">25</span>
           <span class="card__unit">agents</span>
@@ -17,55 +17,39 @@
         <div class="features__card-footer">
           <span class="features__card-name">The Team</span>
           <p class="features__card-desc">
-            Four departments — business, delivery, experience, operations.
-            Each with a lead, a specialty, and the autonomy to push back.
+            Four departments. Each with a lead, a specialty, and the
+            autonomy to push back. They disagree with each other more
+            than you'd expect.
           </p>
         </div>
       </article>
 
-      <article class="features__card reveal reveal--delay-1" aria-label="The night shift">
-        <div class="card__visual card__visual--grid">
-          @for (job of nightlyJobs; track job.name) {
-            <div class="card__job" [class.card__job--active]="job.active">
-              <span class="card__job-dot"></span>
-              <span class="card__job-name">{{ job.name }}</span>
-            </div>
-          }
+      <article class="features__card reveal reveal--delay-1" aria-label="3 AM">
+        <div class="card__visual">
+          <span class="card__number">3</span>
+          <span class="card__unit">AM</span>
         </div>
         <div class="features__card-footer">
           <span class="features__card-name">The Night Shift</span>
           <p class="features__card-desc">
-            27 automated jobs run every night. Code review, security audits,
-            backlog grooming, content generation — all before morning.
+            Most of the real work happens while the founder is asleep.
+            By morning there are tickets filed, PRs merged, and
+            occasionally something on fire.
           </p>
         </div>
       </article>
 
-      <article class="features__card reveal reveal--delay-2" aria-label="The decision maker">
-        <div class="card__visual card__visual--solo">
-          <div class="card__portrait">
-            <img
-              src="personas/Ana-Steele.png"
-              alt="Ana Steele"
-              class="card__portrait-img"
-              loading="lazy"
-            />
-          </div>
-          <div class="card__chain">
-            <span class="card__chain-line"></span>
-            <span class="card__chain-label">reports to</span>
-            <span class="card__chain-line"></span>
-          </div>
-          <div class="card__human">
-            <span class="card__human-name">Brian</span>
-            <span class="card__human-role">Founder</span>
-          </div>
+      <article class="features__card reveal reveal--delay-2" aria-label="1 journal">
+        <div class="card__visual">
+          <span class="card__number">1</span>
+          <span class="card__unit">journal</span>
         </div>
         <div class="features__card-footer">
-          <span class="features__card-name">The Human</span>
+          <span class="features__card-name">The Journal</span>
           <p class="features__card-desc">
-            One person makes the decisions, reviews the work, and breaks the ties.
-            Everything else is handled by the team he built.
+            The director keeps a journal. It's published. It's stranger
+            than this website.
+            <a href="https://journal.unwrittenco.com" target="_blank" rel="noopener" class="features__card-link">Read it &rarr;</a>
           </p>
         </div>
       </article>

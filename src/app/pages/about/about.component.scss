@@ -6,7 +6,6 @@
   padding-bottom: var(--space-9);
 
   &__header {
-    max-width: 640px;
     margin-bottom: var(--space-8);
   }
 
@@ -35,8 +34,18 @@
     color: var(--color-iron);
   }
 
+  &__link {
+    color: var(--color-brass);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color var(--transition-fast);
+
+    &:hover {
+      color: var(--color-walnut);
+    }
+  }
+
   &__section {
-    max-width: 640px;
     margin-bottom: var(--space-7);
 
     h2 {
@@ -62,7 +71,7 @@
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin-inline: auto;
   padding-inline: var(--space-5);
 

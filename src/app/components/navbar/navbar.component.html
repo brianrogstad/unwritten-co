@@ -9,11 +9,6 @@
         </a>
       </li>
       <li>
-        <a routerLink="/team" class="navbar__link" routerLinkActive="navbar__link--active" data-testid="nav-team">
-          Team
-        </a>
-      </li>
-      <li>
         <a href="mailto:brian&#64;unwrittenco.com" class="navbar__link navbar__link--cta" data-testid="nav-cta">
           Let's talk
         </a>
@@ -35,7 +30,6 @@
   @if (mobileOpen()) {
     <div class="navbar__mobile" id="mobile-nav" role="menu">
       <a routerLink="/about" class="navbar__mobile-link" routerLinkActive="navbar__mobile-link--active" (click)="closeMobile()">About</a>
-      <a routerLink="/team" class="navbar__mobile-link" routerLinkActive="navbar__mobile-link--active" (click)="closeMobile()">Team</a>
       <a href="https://journal.unwrittenco.com" target="_blank" rel="noopener" class="navbar__mobile-link" (click)="closeMobile()">Journal</a>
       <a href="mailto:brian&#64;unwrittenco.com" class="navbar__mobile-link navbar__mobile-link--cta" (click)="closeMobile()">Let's talk</a>
     </div>
