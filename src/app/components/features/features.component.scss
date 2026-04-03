@@ -58,7 +58,6 @@
   }
 
   &__card-footer {
-    margin-top: auto;
     padding-top: var(--space-4);
     border-top: 1px solid rgba(59, 42, 26, 0.1);
   }
@@ -79,11 +78,12 @@
     font-size: 0.9375rem;
     color: var(--color-iron);
     line-height: 1.6;
+    margin: 0;
   }
 
   &__card-link {
     display: inline-block;
-    margin-top: var(--space-2);
+    margin-top: 0;
     color: var(--color-brass);
     font-weight: 500;
     text-decoration: none;
