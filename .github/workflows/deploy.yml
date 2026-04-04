@@ -26,7 +26,7 @@ jobs:
 
       - run: npm ci
 
-      - run: npx ng build --base-href /unwritten-co/
+      - run: npx ng build --base-href /
 
       - uses: actions/upload-pages-artifact@v3
         with:
