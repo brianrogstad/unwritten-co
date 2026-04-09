@@ -10,6 +10,7 @@ Company website for Unwritten Co. at unwrittenco.com. Currently pre-launch — t
 | Production build | `npm run build` |
 | Watch build | `npm run watch` |
 | Unit tests | `npm test` |
+| Tests + coverage | `npm run test:coverage` |
 
 ## Tech Stack
 
@@ -57,6 +58,29 @@ Baseline for Raven's L2.5 security review. Update this section whenever the post
 - [ ] **Secrets management** — where secrets live (env vars, secret manager), how they're injected at build/runtime
 - [ ] **Third-party integrations** — CSP entries, SRI for CDN assets, vendor security review notes
 - [ ] **Cookie policy** — which cookies are set, SameSite/Secure/HttpOnly flags, consent handling if applicable
+
+## Testing
+
+Unit tests run on **Vitest + jsdom** via Angular 21's `@angular/build:unit-test` builder. This is a deliberate divergence from league-app / version-seven / portfolioSite, which still use Karma + Jasmine — those projects are on older Angular majors. The alignment principle is "use whatever the Angular CLI ships by default for your version" rather than "copy the exact framework from the older projects."
+
+- **Framework:** Vitest 4, jsdom environment, Angular TestBed
+- **Spec files:** colocated with sources, `*.spec.ts`
+- **Run:** `npm test` (one shot) or `npm run test:coverage` (with coverage report)
+- **Coverage provider:** `@vitest/coverage-v8`, reporters `text-summary` and `lcov`
+- **Coverage excludes:** `main.ts`, `app.config.ts`, `app.routes.ts`, `*.d.ts` (bootstrap/config, no logic)
+- **Baseline (2026-04-09):** 83% statements, 85% lines, 95% branches, 43% functions — above the 80% stmts/lines target. Functions % is low because component lifecycle methods are untested placeholders; expect this to climb as real features land.
+- **What to test:** component creation, rendering without throwing, public methods, service logic, pure functions. Skip DOM fine-grained assertions for placeholder components until the design stabilizes.
+- **Pattern:** follow `app.spec.ts` (standalone component + TestBed) and `hero.component.spec.ts` (smoke test for a component with injected dependencies).
+
+### Pre-commit hook
+
+A git hook in `.githooks/pre-commit` runs `npm test` before every commit and blocks on failure. It is installed automatically by the `prepare` script when `npm install` runs (`git config core.hooksPath .githooks`). Manual install:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+If tests need to be skipped for an emergency commit, use `git commit --no-verify` — but file a follow-up to fix the broken test, don't leave it red.
 
 ## Deep Docs
 

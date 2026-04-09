@@ -73,7 +73,18 @@
           "defaultConfiguration": "development"
         },
         "test": {
-          "builder": "@angular/build:unit-test"
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "buildTarget": "unwritten-co:build:development",
+            "runner": "vitest",
+            "coverageReporters": ["text-summary", "lcov"],
+            "coverageExclude": [
+              "src/main.ts",
+              "src/**/*.d.ts",
+              "src/app/app.config.ts",
+              "src/app/app.routes.ts"
+            ]
+          }
         }
       }
     }

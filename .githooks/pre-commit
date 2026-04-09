@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Pre-commit hook: run unit tests and block the commit on failure.
+# Install: `npm install` runs `prepare`, which points core.hooksPath here.
+# Manual install: `git config core.hooksPath .githooks`
+
+set -e
+
+echo "[pre-commit] Running unit tests..."
+npm test --silent
+
+echo "[pre-commit] Tests passed."
