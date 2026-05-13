@@ -21,7 +21,7 @@ interface Agent {
 export class TeamComponent {
   readonly agents: Agent[] = [
     // Director
-    { name: 'Ana Steele', fullName: 'Anastasia Steele', role: 'Director', team: 'director', image: 'personas/Ana-Steele.png' },
+    { name: 'Ana Sterling', fullName: 'Anastasia Sterling', role: 'Director', team: 'director', image: 'personas/Ana-Sterling.png' },
 
     // Business
     { name: 'Elias Snow', fullName: 'Elias Snow', role: 'Business Lead', team: 'business', image: 'personas/Elias-Snow.png' },
@@ -45,7 +45,7 @@ export class TeamComponent {
     { name: 'Seraphine Blackwood', fullName: 'Seraphine Blackwood', role: 'Experience Lead', team: 'experience', image: 'personas/Seraphine-Blackwood.png' },
     { name: 'Leo Beaumont', fullName: 'Leo Beaumont', role: 'UI Designer', team: 'experience', image: 'personas/Leo-Beaumont.png' },
     { name: 'Caroline Frost', fullName: 'Caroline Frost', role: 'Marketing Specialist', team: 'experience', image: 'personas/Caroline-Frost.png' },
-    { name: 'Elizabeth Sterling', fullName: 'Elizabeth Sterling', role: 'Technical Writer', team: 'experience', image: 'personas/Elizabeth-Sterling.png' },
+    { name: 'Elizabeth Locke', fullName: 'Elizabeth Locke', role: 'Technical Writer', team: 'experience', image: 'personas/Elizabeth-Locke.png' },
     { name: 'Alica Reed', fullName: 'Alica Reed', role: 'Accessibility Specialist', team: 'experience', image: 'personas/Alica-Reed.png' },
     { name: 'Nick Harper', fullName: 'Nick Harper', role: 'SEO Specialist', team: 'experience', image: 'personas/Nick-Harper.png' },
 
@@ -56,5 +56,5 @@ export class TeamComponent {
     { name: 'Yukio Tanaka', fullName: 'Yukio Tanaka', role: 'Prompt Engineer', team: 'operations', image: 'personas/Yukio-Tanaka.png' },
   ];
 
-  readonly anaAgent = this.agents.find((a) => a.name === 'Ana Steele');
+  readonly anaAgent = this.agents.find((a) => a.name === 'Ana Sterling');
 }
