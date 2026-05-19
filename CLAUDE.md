@@ -1,6 +1,6 @@
 # Unwritten Co.
 
-Company website for Unwritten Co. at unwrittenco.com. Currently pre-launch — the domain is dead while the site is built. Will eventually be the public face of the company and the hub for Unwritten's brands and projects.
+Company website for Unwritten Co. at theunwrittencompany.com. Live on GitHub Pages since 2026-04-04. Public face of the company — credibility site, not commerce.
 
 ## Quick Reference
 
@@ -14,10 +14,11 @@ Company website for Unwritten Co. at unwrittenco.com. Currently pre-launch — t
 
 ## Tech Stack
 
-- **Frontend:** Angular 18, TypeScript, SCSS
+- **Frontend:** Angular 21, TypeScript, SCSS
 - **SSR:** None (static site)
-- **Hosting:** TBD — likely Netlify, Vercel, or GitHub Pages for the static build
-- **Status:** Pre-launch, in active build
+- **Hosting:** GitHub Pages via GitHub Actions (deploys on push to master)
+- **Domain:** theunwrittencompany.com
+- **Status:** Live (deployed 2026-04-04)
 
 ## L2.5 Review Context
 
