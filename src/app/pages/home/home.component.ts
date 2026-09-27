@@ -3,7 +3,6 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { HeroComponent } from '../../components/hero/hero.component';
 import { FeaturesComponent } from '../../components/features/features.component';
 import { PhilosophyComponent } from '../../components/philosophy/philosophy.component';
-import { CtaComponent } from '../../components/cta/cta.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 
 @Component({
@@ -14,7 +13,6 @@ import { FooterComponent } from '../../components/footer/footer.component';
     HeroComponent,
     FeaturesComponent,
     PhilosophyComponent,
-    CtaComponent,
     FooterComponent,
   ],
   templateUrl: './home.component.html',
