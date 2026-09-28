@@ -10,3 +10,9 @@ updates:
     open-pull-requests-limit: 10
     labels:
       - "dependencies"
+    ignore:
+      # Angular's compiler-cli/build peer-require `typescript >=6.0 <6.1` (22.x).
+      # TypeScript moves only with `ng update`, never a standalone Dependabot bump.
+      # PR #71 (6.0.3 -> 7.0.2) broke `npm ci` on master; #93 re-opened it.
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
