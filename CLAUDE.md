@@ -35,14 +35,14 @@ When reviewing PRs for this project, query QMD for reference material:
 
 Baseline for Raven's L2.5 security review. Update this section whenever the posture changes.
 
-### Current state (pre-launch static site)
+### Current state (live static site)
 - **Auth:** None. No login, no accounts, no sessions.
 - **User data:** None collected. No forms, no contact capture, no analytics events tied to individuals.
 - **Backend:** None. No API, no database, no server-side logic.
 - **Secrets:** None in the repo. No API keys, no tokens, no credentials.
 - **Third-party scripts:** None currently. Any future addition (analytics, embeds, fonts from CDN) requires a deliberate CSP update.
-- **Deployment platform:** TBD. Final choice determines available security headers (CSP, HSTS, X-Frame-Options, Referrer-Policy). Document here once decided.
-- **Security headers:** TBD — depends on platform. Target baseline when deployed: HSTS, strict CSP, X-Content-Type-Options: nosniff, Referrer-Policy: strict-origin-when-cross-origin, Permissions-Policy (minimal).
+- **Deployment platform:** GitHub Pages via GitHub Actions (`.github/workflows/deploy.yml`, deploys on push to master). Custom domain via `public/CNAME`.
+- **Security headers:** GitHub Pages static hosting cannot set custom response headers via config, so CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy and Permissions-Policy are not available as headers. HTTPS and HSTS come from GitHub Pages itself (enforce HTTPS on the custom domain). Any CSP or Referrer-Policy must go in `<meta>` tags in `src/index.html` (none today); frame-ancestors and X-Frame-Options cannot be set by meta. Moving to header-level control means moving off Pages or fronting it with a CDN.
 
 ### What to flag on review
 - Any addition of a form, input, or contact-capture mechanism without a clear data-handling plan
