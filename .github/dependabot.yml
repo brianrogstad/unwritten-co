@@ -16,3 +16,10 @@ updates:
       # PR #71 (6.0.3 -> 7.0.2) broke `npm ci` on master; #93 re-opened it.
       - dependency-name: "typescript"
         update-types: ["version-update:semver-major", "version-update:semver-minor"]
+    groups:
+      # Sibling @angular/* bumps each rewrite package-lock.json; merged one by one,
+      # the second always conflicts (#46, #58-64, #101). One grouped PR has no race.
+      angular:
+        patterns:
+          - "@angular/*"
+          - "@angular-devkit/*"
