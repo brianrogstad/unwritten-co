@@ -85,12 +85,12 @@ If tests need to be skipped for an emergency commit, use `git commit --no-verify
 
 ## Deep Docs
 
-Full project context lives in `unwritten-ops/projects/unwritten-co/`:
-- `index.md` — project overview
+Full project context lives in `unwritten-ops/projects/unwritten-co/` (paths below are relative to that folder; some sit under `reference/`):
+- `project.md` — project overview
 - `design-standards.md` — design tokens, type, colors, visual guides
 - `voice.md` — voice and content standards
-- `marketing-standards.md` — marketing content rules
-- `tools.md`, `tooling-configs.md` — tool inventory and configs
+- `reference/marketing-standards.md` — marketing content rules
+- `reference/tooling-configs.md` — tooling configs
 
 Or search the knowledge base:
 ```
