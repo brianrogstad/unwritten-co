@@ -14,7 +14,7 @@ Company website for Unwritten Co. at theunwrittencompany.com. Live on GitHub Pag
 
 ## Tech Stack
 
-- **Frontend:** Angular 21, TypeScript, SCSS
+- **Frontend:** Angular 22, TypeScript, SCSS
 - **SSR:** None (static site)
 - **Hosting:** GitHub Pages via GitHub Actions (deploys on push to master)
 - **Domain:** theunwrittencompany.com
@@ -62,7 +62,7 @@ Baseline for Raven's L2.5 security review. Update this section whenever the post
 
 ## Testing
 
-Unit tests run on **Vitest + jsdom** via Angular 21's `@angular/build:unit-test` builder. This is a deliberate divergence from league-app / version-seven / portfolioSite, which still use Karma + Jasmine — those projects are on older Angular majors. The alignment principle is "use whatever the Angular CLI ships by default for your version" rather than "copy the exact framework from the older projects."
+Unit tests run on **Vitest + jsdom** via Angular 22's `@angular/build:unit-test` builder. This is a deliberate divergence from league-app / version-seven / portfolioSite, which still use Karma + Jasmine — those projects are on older Angular majors. The alignment principle is "use whatever the Angular CLI ships by default for your version" rather than "copy the exact framework from the older projects."
 
 - **Framework:** Vitest 4, jsdom environment, Angular TestBed
 - **Spec files:** colocated with sources, `*.spec.ts`
