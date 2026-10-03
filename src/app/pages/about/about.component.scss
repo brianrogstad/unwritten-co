@@ -3,11 +3,10 @@
 .about {
   background-color: var(--color-parchment);
   padding-top: 96px;
-  padding-bottom: var(--space-8);
+  padding-bottom: var(--space-9);
 
   &__header {
-    max-width: 800px;
-    margin-bottom: var(--space-9);
+    margin-bottom: var(--space-8);
   }
 
   &__kicker {
@@ -15,7 +14,7 @@
     font-size: 0.75rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--color-walnut);
+    color: var(--color-brass);
     margin-bottom: var(--space-3);
   }
 
@@ -36,44 +35,26 @@
   }
 
   &__link {
-    color: var(--color-walnut);
+    color: var(--color-brass);
     text-decoration: underline;
-    text-decoration-color: var(--color-brass);
     text-underline-offset: 3px;
-    overflow-wrap: anywhere;
     transition: color var(--transition-fast);
 
     &:hover {
-      color: var(--color-ink);
+      color: var(--color-walnut);
     }
   }
 
   &__section {
-    border-top: 1px solid rgba(59, 42, 26, 0.35);
-    padding-block: var(--space-6) var(--space-8);
-
-    &:last-child {
-      padding-bottom: var(--space-5);
-    }
-
-    @include desktop {
-      display: grid;
-      grid-template-columns: minmax(180px, 1fr) minmax(0, 2fr);
-      column-gap: var(--space-7);
-    }
+    margin-bottom: var(--space-7);
 
     h2 {
       font-family: var(--font-heading);
       font-size: 1.25rem;
       font-weight: 600;
       color: var(--color-ink);
-      overflow-wrap: anywhere;
       margin-bottom: var(--space-4);
     }
-  }
-
-  &__copy {
-    max-width: 720px;
 
     p {
       font-family: var(--font-body);

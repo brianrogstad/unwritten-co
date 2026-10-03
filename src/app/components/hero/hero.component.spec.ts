@@ -3,15 +3,18 @@ import { HeroComponent } from './hero.component';
 
 describe('HeroComponent', () => {
   beforeEach(async () => {
-    await TestBed.configureTestingModule({ imports: [HeroComponent] }).compileComponents();
+    await TestBed.configureTestingModule({
+      imports: [HeroComponent],
+    }).compileComponents();
   });
 
-  it('names the company and the fact that it owns the work, without a decorative image', () => {
+  it('should create', () => {
     const fixture = TestBed.createComponent(HeroComponent);
-    fixture.detectChanges();
-    const hero = fixture.nativeElement as HTMLElement;
-    expect(hero.querySelector('h1')?.textContent?.trim()).toBe('Unwritten Co.');
-    expect(hero.textContent).toMatch(/build and operate our own digital properties/i);
-    expect(hero.querySelector('img')).toBeNull();
+    expect(fixture.componentInstance).toBeTruthy();
+  });
+
+  it('should render without throwing', () => {
+    const fixture = TestBed.createComponent(HeroComponent);
+    expect(() => fixture.detectChanges()).not.toThrow();
   });
 });

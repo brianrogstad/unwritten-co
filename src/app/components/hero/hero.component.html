@@ -1,9 +1,32 @@
-<section class="hero" aria-label="Company introduction">
-  <div class="container hero__inner">
-    <p class="hero__label">Software and publishing</p>
-    <h1 data-testid="hero-headline">Unwritten Co.</h1>
-    <p class="hero__statement" data-testid="hero-subline">
-      We build and operate our own digital properties.
+<section class="hero" aria-label="Hero">
+  <div class="hero__bg" aria-hidden="true">
+    <img
+      class="hero__image"
+      src="https://images.unsplash.com/photo-1473186505569-9c61870c11f9?auto=format&fit=crop&w=1920&q=80"
+      alt=""
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="hero__overlay"></div>
+  </div>
+
+  <div class="hero__content">
+    <p class="hero__eyebrow reveal" data-testid="hero-eyebrow">
+      Unwritten Co.
     </p>
+    <h1 class="hero__headline reveal reveal--delay-1" data-testid="hero-headline">
+      Writing the story as&nbsp;we&nbsp;go.
+    </h1>
+    <p class="hero__subline reveal reveal--delay-2" data-testid="hero-subline">
+      Powered by caffeine, context, and an AI director
+      with selective hearing.
+    </p>
+    <a
+      class="hero__cta reveal reveal--delay-3"
+      href="mailto:support&#64;theunwrittencompany.com"
+      data-testid="hero-cta"
+    >
+      Start a conversation
+    </a>
   </div>
 </section>

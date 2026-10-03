@@ -1,6 +1,8 @@
+@use '../../../styles/mixins' as *;
+
 .philosophy {
   background-color: var(--color-ink);
-  padding-block: clamp(var(--space-8), 9vw, var(--space-10));
+  padding-block: clamp(var(--space-9), 14vw, 180px);
   position: relative;
   overflow: hidden;
 
@@ -43,7 +45,7 @@
   &__contrast {
     font-family: var(--font-body);
     font-size: clamp(0.9375rem, 1.5vw, 1.125rem);
-    color: rgba(250, 247, 240, 0.8);
+    color: var(--color-iron);
     margin-bottom: var(--space-4);
     font-style: italic;
   }
@@ -55,7 +57,6 @@
     font-weight: 700;
     color: var(--color-linen);
     line-height: 1.15;
-    overflow-wrap: anywhere;
     margin-bottom: var(--space-6);
   }
 
@@ -69,17 +70,32 @@
     background-color: var(--color-brass);
     margin-bottom: var(--space-6);
     opacity: 0.6;
+
+    @include motion-safe {
+      // Override the global reveal translateY — a line drawing doesn't need to fly up
+      &.reveal:not(.is-visible) {
+        transform: none;
+        width: 0;
+        opacity: 0;
+      }
+
+      &.reveal.is-visible {
+        transform: none;
+        animation: rule-draw 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+    }
   }
 
   &__body {
     font-family: var(--font-body);
     font-size: clamp(1rem, 1.6vw, 1.125rem);
-    color: rgba(250, 247, 240, 0.82);
+    color: rgba(250, 247, 240, 0.52);
     max-width: 560px;
     line-height: 1.75;
-
-    + .philosophy__body {
-      margin-top: var(--space-4);
-    }
   }
+}
+
+@keyframes rule-draw {
+  from { width: 0; opacity: 0; }
+  to   { width: 48px; opacity: 0.6; }
 }

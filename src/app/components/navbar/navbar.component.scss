@@ -1,50 +1,224 @@
 @use '../../../styles/mixins' as *;
 
 .navbar {
-  position: relative;
-  z-index: 10;
-  background: var(--color-parchment);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0;
+  transition:
+    background-color var(--transition-slow),
+    border-color var(--transition-slow),
+    box-shadow var(--transition-slow);
+  border-bottom: 1px solid transparent;
+  background-color: transparent;
 
-  &__inner {
-    max-width: 1160px;
-    margin-inline: auto;
-    padding: var(--space-2) var(--space-5);
-    border-bottom: 1px solid rgba(59, 42, 26, 0.36);
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-2) var(--space-4);
-
-    @include tablet { padding-inline: var(--space-6); }
-    @include desktop { padding-inline: var(--space-7); }
+  &--scrolled {
+    background-color: rgba(28, 24, 18, 0.92);
+    border-bottom-color: rgba(184, 134, 11, 0.12);
+    backdrop-filter: blur(12px) saturate(1.3);
+    -webkit-backdrop-filter: blur(12px) saturate(1.3);
   }
 
-  &__logo,
-  &__contact {
-    display: inline-flex;
+  // Light background pages — dark text from the start
+  &--light-bg {
+    background-color: var(--color-parchment);
+    border-bottom-color: rgba(59, 42, 26, 0.1);
+
+    .navbar__logo {
+      color: var(--color-ink);
+    }
+
+    .navbar__link {
+      color: var(--color-iron);
+
+      &:hover {
+        color: var(--color-ink);
+      }
+
+      &--cta {
+        color: var(--color-brass);
+
+        &:hover {
+          color: var(--color-brass-light);
+        }
+      }
+    }
+
+    .navbar__burger-bar {
+      background-color: var(--color-ink);
+    }
+  }
+
+  &__inner {
+    display: flex;
     align-items: center;
-    min-height: 44px;
-    font-family: var(--font-heading);
-    font-size: 0.875rem;
-    line-height: 1.3;
-    text-decoration: none;
+    max-width: 1400px;
+    margin-inline: auto;
+    padding-inline: var(--space-5);
+    height: 56px;
+
+    @include tablet {
+      padding-inline: var(--space-6);
+    }
+
+    @include desktop {
+      padding-inline: var(--space-7);
+    }
   }
 
   &__logo {
-    color: var(--color-ink);
-    font-weight: 700;
-    letter-spacing: 0.055em;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
+    color: var(--color-linen);
+    flex-shrink: 0;
+    text-decoration: none;
+
+    &::after {
+      display: none;
+    }
   }
 
-  &__contact {
-    color: var(--color-ink);
-    text-decoration: underline;
-    text-decoration-color: var(--color-brass);
-    text-underline-offset: 0.24em;
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-inline-start: auto;
+
+    @media (max-width: 599px) {
+      display: none;
+    }
   }
 
-  a:focus-visible { outline: 2px solid var(--color-walnut); outline-offset: 4px; }
-  &__contact:hover { text-decoration-color: var(--color-walnut); }
+  &__link {
+    font-family: var(--font-heading);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    color: rgba(250, 247, 240, 0.55);
+    padding: 8px 16px;
+    transition: color var(--transition-fast);
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 16px;
+      right: 16px;
+      height: 1px;
+      background-color: var(--color-brass);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition-base);
+    }
+
+    &:hover {
+      color: var(--color-linen);
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-brass);
+      outline-offset: 2px;
+    }
+
+    &--active {
+      color: var(--color-linen);
+
+      &::after {
+        transform: scaleX(1);
+      }
+
+      .navbar--light-bg & {
+        color: var(--color-ink);
+      }
+    }
+
+    &--cta {
+      color: var(--color-brass);
+      font-weight: 600;
+      margin-inline-start: var(--space-3);
+
+      &:hover {
+        color: var(--color-brass-light);
+      }
+    }
+  }
+
+  // ---- Hamburger ----
+  &__burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    margin-inline-start: auto;
+    padding: 4px;
+
+    @media (min-width: 600px) {
+      display: none;
+    }
+  }
+
+  &__burger-bar {
+    display: block;
+    width: 100%;
+    height: 1.5px;
+    background-color: var(--color-linen);
+    border-radius: 1px;
+    transition: transform var(--transition-fast), opacity var(--transition-fast);
+  }
+
+  // ---- Mobile drawer ----
+  &__mobile {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-4) var(--space-5) var(--space-6);
+    background-color: var(--color-parchment);
+    border-top: 1px solid rgba(59, 42, 26, 0.1);
+
+    @media (min-width: 600px) {
+      display: none;
+    }
+  }
+
+  &__mobile-link {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    color: var(--color-iron);
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid rgba(59, 42, 26, 0.06);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+
+    &::after {
+      display: none;
+    }
+
+    &:hover {
+      color: var(--color-ink);
+    }
+
+    &--active {
+      color: var(--color-ink);
+    }
+
+    &--cta {
+      color: var(--color-brass);
+      font-weight: 600;
+      border-bottom: none;
+      margin-top: var(--space-2);
+    }
+  }
 }

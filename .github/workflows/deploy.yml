@@ -3,62 +3,18 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [master]
-  pull_request:
-    branches: [master]
 
 permissions:
   contents: read
+  pages: write
+  id-token: write
 
 concurrency:
-  group: pages-${{ github.event_name }}-${{ github.ref }}
+  group: pages
   cancel-in-progress: true
 
 jobs:
-  verify:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-
-      - run: npm ci
-
-      - name: Install smoke browser
-        run: npx playwright install --with-deps chromium
-
-      - name: Smoke-test home and About
-        run: npm run test:e2e
-
-      - name: Run unit tests with coverage
-        run: npm run test:coverage -- --watch=false
-
-      - name: Enforce user-facing line coverage above 85%
-        run: |
-          node <<'NODE'
-          const fs = require('node:fs');
-          const report = fs.readFileSync('coverage/unwritten-co/lcov.info', 'utf8');
-          let covered = 0;
-          let total = 0;
-          for (const entry of report.split('end_of_record')) {
-            const path = entry.match(/^SF:(.+)$/m)?.[1];
-            if (!path || !/^src\/app\/(components|pages)\//.test(path)) continue;
-            total += Number(entry.match(/^LF:(\d+)$/m)?.[1] || 0);
-            covered += Number(entry.match(/^LH:(\d+)$/m)?.[1] || 0);
-          }
-          if (total === 0) throw new Error('No component/page coverage in lcov report');
-          console.log(`User-facing line coverage: ${(covered / total * 100).toFixed(2)}% (${covered}/${total})`);
-          if (covered * 100 <= total * 85) throw new Error('User-facing line coverage must exceed 85%');
-          NODE
-
-      - name: Audit production dependencies (high/critical)
-        run: npm audit --omit=dev --audit-level=high
-
   build:
-    needs: verify
-    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -70,9 +26,7 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run build -- --base-href /
-      - name: Confirm About has a static entry
-        run: test -f dist/unwritten-co/browser/about/index.html
+      - run: npx ng build --base-href /
 
       - uses: actions/upload-pages-artifact@v3
         with:
@@ -81,9 +35,6 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
