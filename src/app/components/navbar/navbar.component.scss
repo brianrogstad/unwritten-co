@@ -57,7 +57,8 @@
     max-width: 1400px;
     margin-inline: auto;
     padding-inline: var(--space-5);
-    height: 56px;
+    min-height: 56px;
+    padding-block: var(--space-2);
 
     @include tablet {
       padding-inline: var(--space-6);
@@ -76,7 +77,13 @@
     text-transform: uppercase;
     color: var(--color-linen);
     flex-shrink: 0;
+    line-height: 1.1;
     text-decoration: none;
+
+    @media (max-width: 599px) {
+      flex-shrink: 1;
+      min-width: 0;
+    }
 
     &::after {
       display: none;
@@ -162,6 +169,7 @@
     width: 32px;
     height: 32px;
     margin-inline-start: auto;
+    flex-shrink: 0;
     padding: 4px;
 
     @media (min-width: 600px) {

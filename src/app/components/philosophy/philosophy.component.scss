@@ -1,6 +1,6 @@
 .philosophy {
   background-color: var(--color-ink);
-  padding-block: clamp(var(--space-9), 14vw, 180px);
+  padding-block: clamp(var(--space-8), 9vw, var(--space-10));
   position: relative;
   overflow: hidden;
 
@@ -55,6 +55,7 @@
     font-weight: 700;
     color: var(--color-linen);
     line-height: 1.15;
+    overflow-wrap: anywhere;
     margin-bottom: var(--space-6);
   }
 

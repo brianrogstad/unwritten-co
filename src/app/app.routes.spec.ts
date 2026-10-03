@@ -34,6 +34,7 @@ describe('app routes', () => {
     const work = el.querySelector('section[aria-labelledby="work-heading"]');
     expect(work).not.toBeNull();
     expect(work?.querySelectorAll('article').length).toBe(3);
+    expect(el.querySelector('section[aria-labelledby="company-note-heading"]')).not.toBeNull();
     expect(el.querySelector('app-features')).toBeNull();
     expect(el.querySelector('a[href="https://anasjournal.com"]')).toBeNull();
 

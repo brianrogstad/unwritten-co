@@ -19,8 +19,9 @@ describe('AboutComponent', () => {
     expect(page.querySelector('nav.navbar--light-bg')).not.toBeNull();
     const main = page.querySelector('main');
     expect(main?.querySelector('h1')?.textContent?.trim()).toBeTruthy();
-    expect(main?.querySelectorAll('section').length).toBe(3);
+    expect(main?.querySelectorAll('section').length).toBe(4);
     expect(main?.querySelector('#about-company')).not.toBeNull();
+    expect(main?.querySelector('#about-areas')).not.toBeNull();
     expect(main?.querySelector('#about-method')).not.toBeNull();
     expect(main?.querySelector('section[aria-labelledby="about-contact"] a[href^="mailto:"]')).not.toBeNull();
     expect(page.querySelector('a[href="https://anasjournal.com"]')).toBeNull();

@@ -69,3 +69,53 @@
     }
   }
 }
+
+.company-note {
+  background-color: var(--color-vellum);
+  border-top: 1px solid rgba(59, 42, 26, 0.15);
+  color: var(--color-ink);
+  padding-block: clamp(var(--space-8), 8vw, var(--space-9));
+
+  &__layout {
+    display: grid;
+    gap: var(--space-7);
+
+    @include desktop {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-9);
+    }
+  }
+
+  &__kicker {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-walnut);
+    margin-bottom: var(--space-4);
+  }
+
+  h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 3.4vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    max-width: 16ch;
+  }
+
+  &__copy {
+    max-width: 62ch;
+
+    p {
+      font-family: var(--font-body);
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: var(--color-iron);
+
+      + p {
+        margin-top: var(--space-5);
+      }
+    }
+  }
+}

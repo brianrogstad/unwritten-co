@@ -3,7 +3,7 @@
 .about {
   background-color: var(--color-parchment);
   padding-top: 96px;
-  padding-bottom: var(--space-9);
+  padding-bottom: var(--space-8);
 
   &__header {
     max-width: 800px;
@@ -15,7 +15,7 @@
     font-size: 0.75rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--color-brass);
+    color: var(--color-walnut);
     margin-bottom: var(--space-3);
   }
 
@@ -36,19 +36,25 @@
   }
 
   &__link {
-    color: var(--color-brass);
+    color: var(--color-walnut);
     text-decoration: underline;
+    text-decoration-color: var(--color-brass);
     text-underline-offset: 3px;
+    overflow-wrap: anywhere;
     transition: color var(--transition-fast);
 
     &:hover {
-      color: var(--color-walnut);
+      color: var(--color-ink);
     }
   }
 
   &__section {
     border-top: 1px solid rgba(59, 42, 26, 0.35);
     padding-block: var(--space-6) var(--space-8);
+
+    &:last-child {
+      padding-bottom: var(--space-5);
+    }
 
     @include desktop {
       display: grid;
@@ -61,6 +67,7 @@
       font-size: 1.25rem;
       font-weight: 600;
       color: var(--color-ink);
+      overflow-wrap: anywhere;
       margin-bottom: var(--space-4);
     }
   }
