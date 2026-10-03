@@ -10,20 +10,20 @@ describe('HomeComponent', () => {
     }).compileComponents();
   });
 
-  it('renders the home page shell with navigation, main sections, and footer', () => {
+  it('acts as a company sign, with real work and a direct way to write', () => {
     const fixture = TestBed.createComponent(HomeComponent);
     fixture.detectChanges();
 
     const page = fixture.nativeElement as HTMLElement;
-    expect(page.querySelector('nav[aria-label="Main navigation"]')).not.toBeNull();
     const main = page.querySelector('main');
-    expect(main).not.toBeNull();
-    expect(main?.querySelector('section[aria-label="Hero"]')).not.toBeNull();
-    const work = main?.querySelector('section[aria-labelledby="work-heading"]');
-    expect(work).not.toBeNull();
-    expect(work?.querySelectorAll('article').length).toBe(3);
-    expect(main?.querySelector('section[aria-labelledby="company-note-heading"]')).not.toBeNull();
-    expect(main?.querySelector('section[aria-labelledby="philosophy-heading"]')).not.toBeNull();
+    expect(main?.querySelector('h1')?.textContent?.trim()).toBe('Unwritten Co.');
+    expect(main?.textContent).toMatch(/build and operate our own digital properties/i);
+    expect(main?.querySelector('a[href="https://theleagueindex.com/"]')).not.toBeNull();
+    expect(main?.querySelector('a[href="mailto:support@theunwrittencompany.com"]')).not.toBeNull();
+    expect(page.querySelector('nav[aria-label="Main navigation"]')).not.toBeNull();
+    expect(page.querySelector('a[href="/about"]')).toBeNull();
+    expect(main?.querySelector('img')).toBeNull();
+    expect(main?.querySelector('app-philosophy')).toBeNull();
     expect(main?.querySelector('app-features')).toBeNull();
     expect(page.querySelector('a[href="https://anasjournal.com"]')).toBeNull();
     expect(page.querySelector('footer[role="contentinfo"]')).not.toBeNull();

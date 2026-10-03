@@ -2,68 +2,40 @@
 <main>
   <app-hero />
 
-  <section class="work" id="work" aria-labelledby="work-heading">
-    <div class="container">
-      <header class="work__header">
-        <p class="work__kicker">Areas of work</p>
-        <h2 id="work-heading">The short answer</h2>
-        <p>
-          Software and publishing are the easiest parts to name. The work
-          connecting them is less tidy, so we've given it a column of its own.
-        </p>
-      </header>
-
-      <div class="work__grid">
-        <article class="work__item">
-          <h3>Software</h3>
-          <p>
-            A public page can be the smallest part of a project. There may also
-            be a way to update it, keep records in order, or take a repeated
-            task out of someone's day. We build the visible part and the system
-            that lets it keep working.
-          </p>
-        </article>
-        <article class="work__item">
-          <h3>Publishing</h3>
-          <p>
-            We publish writing to be read, not as a demonstration of a software
-            product. It needs editing, a place to live, and some way for a reader
-            to find it again later.
-          </p>
-        </article>
-        <article class="work__item">
-          <h3>In between</h3>
-          <p>
-            A publication needs a system to hold its pages and make the older
-            ones findable. A tool needs language that tells someone what it
-            does. The boundary is useful until it isn't.
-          </p>
-        </article>
-      </div>
+  <section class="work" aria-labelledby="work-heading">
+    <div class="container work__layout">
+      <h2 id="work-heading">The work</h2>
+      <p>
+        Our projects take different forms: websites and applications, published
+        writing, and the tools used to run them. We handle the design, code,
+        editing, and maintenance ourselves.
+      </p>
     </div>
   </section>
 
-  <section class="company-note" aria-labelledby="company-note-heading">
-    <div class="container company-note__layout">
+  <section class="example" aria-labelledby="example-heading">
+    <div class="container example__layout">
+      <h2 id="example-heading">One example</h2>
       <div>
-        <p class="company-note__kicker">Behind the public work</p>
-        <h2 id="company-note-heading">Not every useful thing has a launch.</h2>
-      </div>
-      <div class="company-note__copy">
+        <a href="https://theleagueindex.com/" class="example__link">
+          League Index <span aria-hidden="true">↗</span>
+        </a>
         <p>
-          A site or publication is the part that gets an address. Behind it are
-          drafts, systems, revisions, and small decisions that make the public
-          version possible. We keep working on those after the announcement, too.
-        </p>
-        <p>
-          Some of that work stays private because it is only useful to us. Some
-          becomes a project in its own right. Either way, a list of public
-          projects would leave most of the company out.
+          A web tool that uses recent League&nbsp;of&nbsp;Legends matches to rank a
+          player's champions, with adjustable weights for the statistics that
+          matter to them.
         </p>
       </div>
     </div>
   </section>
 
-  <app-philosophy />
+  <section class="correspondence" aria-labelledby="correspondence-heading">
+    <div class="container correspondence__layout">
+      <h2 id="correspondence-heading">Correspondence</h2>
+      <a href="mailto:support&#64;theunwrittencompany.com">
+        support&#64;theunwrittencompany.com
+      </a>
+    </div>
+  </section>
 </main>
 <app-footer />

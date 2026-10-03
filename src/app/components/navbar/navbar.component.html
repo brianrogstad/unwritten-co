@@ -1,36 +1,6 @@
-<nav class="navbar" [class.navbar--scrolled]="isScrolled()" [class.navbar--light-bg]="lightBg" role="navigation" aria-label="Main navigation">
+<nav class="navbar" [class.navbar--light-bg]="lightBg" aria-label="Main navigation">
   <div class="navbar__inner">
     <a routerLink="/" class="navbar__logo" data-testid="navbar-logo">Unwritten Co.</a>
-
-    <ul class="navbar__links" role="list">
-      <li>
-        <a routerLink="/about" class="navbar__link" routerLinkActive="navbar__link--active" data-testid="nav-about">
-          About
-        </a>
-      </li>
-      <li>
-        <a href="mailto:support&#64;theunwrittencompany.com" class="navbar__link navbar__link--cta" data-testid="nav-cta">
-          Contact
-        </a>
-      </li>
-    </ul>
-
-    <button
-      class="navbar__burger"
-      (click)="toggleMobile()"
-      [attr.aria-expanded]="mobileOpen()"
-      aria-controls="mobile-nav"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar__burger-bar" aria-hidden="true"></span>
-      <span class="navbar__burger-bar" aria-hidden="true"></span>
-    </button>
+    <a href="mailto:support&#64;theunwrittencompany.com" class="navbar__contact" data-testid="nav-cta">Contact</a>
   </div>
-
-  @if (mobileOpen()) {
-    <div class="navbar__mobile" id="mobile-nav" role="menu">
-      <a routerLink="/about" class="navbar__mobile-link" routerLinkActive="navbar__mobile-link--active" (click)="closeMobile()">About</a>
-      <a href="mailto:support&#64;theunwrittencompany.com" class="navbar__mobile-link navbar__mobile-link--cta" (click)="closeMobile()">Contact</a>
-    </div>
-  }
 </nav>

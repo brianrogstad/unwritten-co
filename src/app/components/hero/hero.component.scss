@@ -1,126 +1,45 @@
 @use '../../../styles/mixins' as *;
 
 .hero {
-  position: relative;
-  min-height: clamp(600px, 78svh, 760px);
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
+  padding-block: clamp(64px, 9vw, 120px) clamp(48px, 6vw, 80px);
+  background: var(--color-parchment);
 
-  &__bg {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    // Letterpress fallback remains visible if the decorative photo cannot load.
-    background:
-      radial-gradient(ellipse at 80% 20%, var(--color-brass), transparent 52%),
-      linear-gradient(155deg, var(--color-walnut), var(--color-ink) 80%);
-
-    @include motion-safe {
-      // Parallax: image scrolls at ~60% of page scroll speed
-      animation: hero-parallax linear both;
-      animation-timeline: scroll(root);
-      animation-range: 0 100vh;
-    }
+  &__inner {
+    max-width: 1160px;
   }
 
-  &__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 40%;
-    transform-origin: center center;
-
-    &[hidden] {
-      display: none;
-    }
-
-    @include motion-safe {
-      animation: ken-burns 18s ease-in-out both;
-    }
-  }
-
-  &__overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to top,
-      var(--color-ink) 0%,
-      rgba(28, 24, 18, 0.88) 30%,
-      rgba(28, 24, 18, 0.52) 60%,
-      rgba(28, 24, 18, 0.2) 100%
-    );
-  }
-
-  &__content {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    max-width: 1400px;
-    margin-inline: auto;
-    padding-inline: var(--space-5);
-    padding-bottom: clamp(var(--space-8), 10vw, 120px);
-
-    @include tablet {
-      padding-inline: var(--space-6);
-    }
-
-    @include desktop {
-      padding-inline: var(--space-7);
-    }
-  }
-
-  &__eyebrow {
+  &__label {
     font-family: var(--font-heading);
-    font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+    font-size: 0.875rem;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.075em;
     text-transform: uppercase;
-    color: rgba(250, 247, 240, 0.6);
-    margin-bottom: var(--space-2);
-  }
-
-  &__headline {
-    font-family: var(--font-drama);
-    font-style: italic;
-    font-size: clamp(3.5rem, 8vw, 7rem);
-    font-weight: 700;
-    color: var(--color-linen);
-    line-height: 1.0;
-    overflow-wrap: anywhere;
-    margin-bottom: var(--space-5);
-  }
-
-  &__desktop-break {
-    display: none;
-
-    @include desktop {
-      display: initial;
-    }
-  }
-
-  &__subline {
-    font-family: var(--font-body);
-    font-size: clamp(1rem, 1.6vw, 1.1875rem);
-    color: rgba(250, 247, 240, 0.85);
-    max-width: 480px;
-    line-height: 1.65;
+    color: var(--color-walnut);
     margin-bottom: var(--space-6);
   }
 
-  &__cta {
-    @include btn-brass;
-    font-size: 0.9375rem;
-    padding: 14px 32px;
+  h1 {
+    font-family: var(--font-drama);
+    font-size: clamp(3.75rem, 9.5vw, 9rem);
+    font-weight: 400;
+    line-height: 0.98;
+    letter-spacing: -0.065em;
+    overflow-wrap: anywhere;
+    max-width: 11ch;
   }
-}
 
-@keyframes ken-burns {
-  from { transform: scale(1.05); }
-  to   { transform: scale(1.0); }
-}
+  &__statement {
+    font-family: var(--font-heading);
+    font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+    font-weight: 400;
+    line-height: 1.45;
+    max-width: 32ch;
+    margin-top: clamp(var(--space-7), 7vw, var(--space-9));
+  }
 
-@keyframes hero-parallax {
-  from { transform: translateY(0); }
-  to   { transform: translateY(40%); }
+  @include desktop {
+    &__statement {
+      margin-left: 40%;
+    }
+  }
 }

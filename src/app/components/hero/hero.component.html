@@ -1,33 +1,9 @@
-<section class="hero" aria-label="Hero">
-  <div class="hero__bg" aria-hidden="true">
-    <img
-      class="hero__image"
-      src="https://images.unsplash.com/photo-1473186505569-9c61870c11f9?auto=format&fit=crop&w=1920&q=80"
-      alt=""
-      loading="eager"
-      fetchpriority="high"
-      (error)="$any($event.target).hidden = true"
-    />
-    <div class="hero__overlay"></div>
-  </div>
-
-  <div class="hero__content">
-    <p class="hero__eyebrow" data-testid="hero-eyebrow">
-      Unwritten Co.
+<section class="hero" aria-label="Company introduction">
+  <div class="container hero__inner">
+    <p class="hero__label">Software and publishing</p>
+    <h1 data-testid="hero-headline">Unwritten Co.</h1>
+    <p class="hero__statement" data-testid="hero-subline">
+      We build and operate our own digital properties.
     </p>
-    <h1 class="hero__headline" data-testid="hero-headline">
-      The scope is<br class="hero__desktop-break"> fairly broad.
-    </h1>
-    <p class="hero__subline" data-testid="hero-subline">
-      Software and publishing are the short answer. There's other work behind
-      and between them.
-    </p>
-    <a
-      class="hero__cta"
-      href="mailto:support&#64;theunwrittencompany.com"
-      data-testid="hero-cta"
-    >
-      Contact
-    </a>
   </div>
 </section>
