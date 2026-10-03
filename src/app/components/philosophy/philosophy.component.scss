@@ -76,5 +76,9 @@
     color: rgba(250, 247, 240, 0.82);
     max-width: 560px;
     line-height: 1.75;
+
+    + .philosophy__body {
+      margin-top: var(--space-4);
+    }
   }
 }

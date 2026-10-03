@@ -9,10 +9,12 @@ test('home → About → browser back renders both routes without console errors
 
   await page.goto('/');
   await expect(page.locator('main section[aria-label="Hero"] h1')).toBeVisible();
+  await expect(page.locator('main section[aria-labelledby="work-heading"] article')).toHaveCount(3);
 
   await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'About' }).click();
   await expect(page).toHaveURL(/\/about$/);
   await expect(page.locator('main.about h1')).toBeVisible();
+  await expect(page.locator('main.about section')).toHaveCount(3);
 
   await page.goBack();
   await expect(page).toHaveURL('/');

@@ -2,7 +2,7 @@
 
 .hero {
   position: relative;
-  min-height: 100svh;
+  min-height: clamp(600px, 78svh, 760px);
   display: flex;
   align-items: flex-end;
   overflow: hidden;
@@ -88,6 +88,14 @@
     color: var(--color-linen);
     line-height: 1.0;
     margin-bottom: var(--space-5);
+  }
+
+  &__desktop-break {
+    display: none;
+
+    @include desktop {
+      display: initial;
+    }
   }
 
   &__subline {
