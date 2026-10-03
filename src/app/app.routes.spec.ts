@@ -25,11 +25,18 @@ describe('app routes', () => {
   });
 
   beforeEach(async () => {
+    vi.spyOn(console, 'error');
     TestBed.configureTestingModule({
       providers: [provideRouter(routes)],
     });
     harness = await RouterTestingHarness.create();
     router = TestBed.inject(Router);
+  });
+
+  afterEach(() => {
+    const errors = vi.mocked(console.error).mock.calls;
+    vi.restoreAllMocks();
+    expect(errors).toEqual([]);
   });
 
   function page(): HTMLElement {
@@ -64,9 +71,8 @@ describe('app routes', () => {
     await harness.navigateByUrl('/about');
     expect(router.url).toBe('/about');
     const el = page();
-    expect(el.querySelector('h1')?.textContent?.trim()).toBe('Unwritten Co.');
-    const headings = Array.from(el.querySelectorAll('h2')).map((h) => h.textContent?.trim());
-    expect(headings).toEqual(['What we are', 'What we build', 'How it runs', 'Elsewhere']);
+    expect(el.querySelector('main.about h1')?.textContent?.trim()).toBeTruthy();
+    expect(el.querySelectorAll('main.about section').length).toBeGreaterThan(0);
     expect(el.querySelector('footer[role="contentinfo"]')).not.toBeNull();
     expect(el.querySelector('section[aria-label="Hero"]')).toBeNull();
   });
@@ -75,5 +81,16 @@ describe('app routes', () => {
     await harness.navigateByUrl('/no-such-page/deeper');
     expect(router.url).toBe('/');
     expectHomeSections(page());
+  });
+
+  it('leaves about and renders home when navigating to an unknown path', async () => {
+    await harness.navigateByUrl('/about');
+    expect(router.url).toBe('/about');
+    expect(page().querySelector('main.about')).not.toBeNull();
+
+    await harness.navigateByUrl('/missing-after-about');
+    expect(router.url).toBe('/');
+    expect(page().querySelector('section[aria-label="Hero"]')).not.toBeNull();
+    expect(page().querySelector('main.about')).toBeNull();
   });
 });

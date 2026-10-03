@@ -11,6 +11,10 @@
     position: absolute;
     inset: 0;
     z-index: 0;
+    // Letterpress fallback remains visible if the decorative photo cannot load.
+    background:
+      radial-gradient(ellipse at 80% 20%, var(--color-brass), transparent 52%),
+      linear-gradient(155deg, var(--color-walnut), var(--color-ink) 80%);
 
     @include motion-safe {
       // Parallax: image scrolls at ~60% of page scroll speed
@@ -26,6 +30,10 @@
     object-fit: cover;
     object-position: center 40%;
     transform-origin: center center;
+
+    &[hidden] {
+      display: none;
+    }
 
     @include motion-safe {
       animation: ken-burns 18s ease-in-out both;
