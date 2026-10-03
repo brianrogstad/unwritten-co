@@ -3,26 +3,9 @@ import { provideRouter, Router } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { routes } from './app.routes';
 
-// jsdom has no IntersectionObserver; the features and philosophy sections use it for reveals.
-class NoopIntersectionObserver {
-  observe(): void {}
-  unobserve(): void {}
-  disconnect(): void {}
-  takeRecords(): [] {
-    return [];
-  }
-}
-
 describe('app routes', () => {
   let harness: RouterTestingHarness;
   let router: Router;
-
-  beforeAll(() => {
-    if (!('IntersectionObserver' in globalThis)) {
-      (globalThis as unknown as { IntersectionObserver: unknown }).IntersectionObserver =
-        NoopIntersectionObserver;
-    }
-  });
 
   beforeEach(async () => {
     vi.spyOn(console, 'error');
@@ -48,9 +31,8 @@ describe('app routes', () => {
     expect(hero).not.toBeNull();
     expect(el.querySelector('[data-testid="hero-headline"]')?.textContent?.trim()).toBeTruthy();
 
-    const features = el.querySelector('section[aria-labelledby="features-heading"]');
-    expect(features).not.toBeNull();
-    expect(features?.querySelectorAll('article').length).toBe(3);
+    expect(el.querySelector('app-features')).toBeNull();
+    expect(el.querySelector('a[href="https://anasjournal.com"]')).toBeNull();
 
     const philosophy = el.querySelector('section[aria-labelledby="philosophy-heading"]');
     expect(philosophy).not.toBeNull();

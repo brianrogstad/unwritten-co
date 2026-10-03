@@ -14,6 +14,44 @@ describe('NavbarComponent', () => {
 
   afterEach(() => vi.restoreAllMocks());
 
+  it('renders the desktop navigation destinations', () => {
+    const fixture = TestBed.createComponent(NavbarComponent);
+    fixture.detectChanges();
+
+    const nav = fixture.nativeElement as HTMLElement;
+    expect(nav.querySelector('nav[aria-label="Main navigation"]')).not.toBeNull();
+    expect(nav.querySelector<HTMLAnchorElement>('[data-testid="navbar-logo"]')?.getAttribute('href')).toBe('/');
+    expect(nav.querySelector<HTMLAnchorElement>('[data-testid="nav-about"]')?.getAttribute('href')).toBe('/about');
+    expect(nav.querySelector<HTMLAnchorElement>('[data-testid="nav-cta"]')?.getAttribute('href'))
+      .toBe('mailto:support@theunwrittencompany.com');
+  });
+
+  it('opens and closes the mobile menu from its button', async () => {
+    const fixture = TestBed.createComponent(NavbarComponent);
+    fixture.detectChanges();
+
+    const nav = fixture.nativeElement as HTMLElement;
+    const burger = nav.querySelector<HTMLButtonElement>('button[aria-label="Toggle navigation"]');
+    expect(burger?.getAttribute('aria-expanded')).toBe('false');
+    expect(nav.querySelector('#mobile-nav')).toBeNull();
+
+    burger?.click();
+    await fixture.whenStable();
+    fixture.detectChanges();
+    expect(burger?.getAttribute('aria-expanded')).toBe('true');
+    const mobile = nav.querySelector<HTMLElement>('#mobile-nav[role="menu"]');
+    expect(mobile).not.toBeNull();
+    expect(mobile?.querySelector<HTMLAnchorElement>('a[href="/about"]')?.textContent?.trim()).toBe('About');
+    expect(mobile?.querySelector<HTMLAnchorElement>('a[href^="mailto:"]')?.textContent?.trim()).toBe('Contact');
+    expect(mobile?.querySelectorAll('a')).toHaveLength(2);
+
+    burger?.click();
+    await fixture.whenStable();
+    fixture.detectChanges();
+    expect(burger?.getAttribute('aria-expanded')).toBe('false');
+    expect(nav.querySelector('#mobile-nav')).toBeNull();
+  });
+
   it('toggles the mobile menu open and closed', () => {
     const navbar = TestBed.createComponent(NavbarComponent).componentInstance;
 

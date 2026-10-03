@@ -88,25 +88,12 @@
     color: var(--color-linen);
     line-height: 1.0;
     margin-bottom: var(--space-5);
-
-    // More dramatic entrance than the global .reveal default
-    @include motion-safe {
-      &.reveal:not(.is-visible) {
-        transform: translateY(28px);
-      }
-
-      &.reveal {
-        transition:
-          opacity 800ms cubic-bezier(0.16, 1, 0.3, 1),
-          transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
-      }
-    }
   }
 
   &__subline {
     font-family: var(--font-body);
     font-size: clamp(1rem, 1.6vw, 1.1875rem);
-    color: rgba(250, 247, 240, 0.65);
+    color: rgba(250, 247, 240, 0.85);
     max-width: 480px;
     line-height: 1.65;
     margin-bottom: var(--space-6);

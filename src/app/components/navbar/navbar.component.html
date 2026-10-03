@@ -1,6 +1,6 @@
 <nav class="navbar" [class.navbar--scrolled]="isScrolled()" [class.navbar--light-bg]="lightBg" role="navigation" aria-label="Main navigation">
   <div class="navbar__inner">
-    <a routerLink="/" class="navbar__logo" data-testid="navbar-logo">Unwritten</a>
+    <a routerLink="/" class="navbar__logo" data-testid="navbar-logo">Unwritten Co.</a>
 
     <ul class="navbar__links" role="list">
       <li>
@@ -10,7 +10,7 @@
       </li>
       <li>
         <a href="mailto:support&#64;theunwrittencompany.com" class="navbar__link navbar__link--cta" data-testid="nav-cta">
-          Let's talk
+          Contact
         </a>
       </li>
     </ul>
@@ -30,8 +30,7 @@
   @if (mobileOpen()) {
     <div class="navbar__mobile" id="mobile-nav" role="menu">
       <a routerLink="/about" class="navbar__mobile-link" routerLinkActive="navbar__mobile-link--active" (click)="closeMobile()">About</a>
-      <a href="https://anasjournal.com" target="_blank" rel="noopener" class="navbar__mobile-link" (click)="closeMobile()">Journal</a>
-      <a href="mailto:support&#64;theunwrittencompany.com" class="navbar__mobile-link navbar__mobile-link--cta" (click)="closeMobile()">Let's talk</a>
+      <a href="mailto:support&#64;theunwrittencompany.com" class="navbar__mobile-link navbar__mobile-link--cta" (click)="closeMobile()">Contact</a>
     </div>
   }
 </nav>

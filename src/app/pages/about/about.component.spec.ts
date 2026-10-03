@@ -20,6 +20,7 @@ describe('AboutComponent', () => {
     const main = page.querySelector('main');
     expect(main?.querySelector('h1')?.textContent?.trim()).toBeTruthy();
     expect(main?.querySelectorAll('section').length).toBeGreaterThan(0);
+    expect(page.querySelector('a[href="https://anasjournal.com"]')).toBeNull();
     expect(page.querySelector('footer[role="contentinfo"]')).not.toBeNull();
     expect(page.querySelector('section[aria-label="Hero"]')).toBeNull();
   });
