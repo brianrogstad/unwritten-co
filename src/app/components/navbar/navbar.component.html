@@ -8,11 +8,6 @@
           About
         </a>
       </li>
-      <li>
-        <a href="https://anasjournal.com" target="_blank" rel="noopener" class="navbar__link" data-testid="nav-journal">
-          Journal
-        </a>
-      </li>
     </ul>
 
     <button
@@ -30,7 +25,6 @@
   @if (mobileOpen()) {
     <div class="navbar__mobile" id="mobile-nav" role="menu">
       <a routerLink="/about" class="navbar__mobile-link" routerLinkActive="navbar__mobile-link--active" (click)="closeMobile()">About</a>
-      <a href="https://anasjournal.com" target="_blank" rel="noopener" class="navbar__mobile-link" (click)="closeMobile()">Journal</a>
     </div>
   }
 </nav>

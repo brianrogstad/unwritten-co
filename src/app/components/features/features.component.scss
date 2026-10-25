@@ -121,6 +121,15 @@
   letter-spacing: 0.02em;
 }
 
+.card__word {
+  font-family: var(--font-drama);
+  font-style: italic;
+  font-size: clamp(3.5rem, 6vw, 5rem);
+  font-weight: 700;
+  color: var(--color-brass);
+  line-height: 1;
+}
+
 // ---- Card 2: The Night Shift (job grid) ----
 .card__visual--grid {
   flex-wrap: wrap;
