@@ -28,7 +28,7 @@
   &__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-5);
+    gap: var(--space-7) var(--space-6);
 
     @include tablet {
       grid-template-columns: repeat(2, 1fr);
@@ -40,201 +40,47 @@
   }
 
   &__card {
-    background-color: var(--color-vellum);
-    border-radius: var(--radius-lg);
-    padding: var(--space-6);
-    box-shadow: var(--shadow-card);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-5);
-    border: 1px solid rgba(59, 42, 26, 0.06);
-    transition: box-shadow var(--transition-base);
+    position: relative;
+    padding-top: var(--space-5);
+    border-top: 1px solid rgba(59, 42, 26, 0.14);
 
-    @include motion-safe {
-      &:hover {
-        box-shadow: var(--shadow-card-hover);
-      }
+    &::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 0;
+      width: 40px;
+      height: 1px;
+      background-color: var(--color-brass);
     }
   }
 
-  &__card-footer {
-    padding-top: var(--space-4);
-    border-top: 1px solid rgba(59, 42, 26, 0.1);
+  &__icon {
+    width: 28px;
+    height: 28px;
+    fill: none;
+    stroke: var(--color-brass);
+    stroke-width: 1.25;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    margin-bottom: var(--space-4);
   }
 
   &__card-name {
-    display: block;
     font-family: var(--font-heading);
-    font-size: 0.8125rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--color-brass);
-    margin-bottom: var(--space-2);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    letter-spacing: -0.01em;
+    margin: 0 0 var(--space-2);
   }
 
   &__card-desc {
     font-family: var(--font-body);
-    font-size: 0.9375rem;
+    font-size: 1rem;
     color: var(--color-iron);
-    line-height: 1.6;
+    line-height: 1.65;
     margin: 0;
+    max-width: 34ch;
   }
-
-  &__card-link {
-    display: inline-block;
-    margin-top: 0;
-    color: var(--color-brass);
-    font-weight: 500;
-    text-decoration: none;
-    transition: color var(--transition-fast);
-
-    &:hover {
-      color: var(--color-walnut);
-    }
-  }
-}
-
-// ---- Card 1: The Team (big number) ----
-.card__visual {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-3);
-  min-height: 140px;
-  align-items: center;
-}
-
-.card__number {
-  font-family: var(--font-drama);
-  font-style: italic;
-  font-size: clamp(5rem, 8vw, 7rem);
-  font-weight: 700;
-  color: var(--color-brass);
-  line-height: 1;
-}
-
-.card__unit {
-  font-family: var(--font-heading);
-  font-size: 1.25rem;
-  font-weight: 400;
-  color: var(--color-iron);
-  letter-spacing: 0.02em;
-}
-
-.card__word {
-  font-family: var(--font-drama);
-  font-style: italic;
-  font-size: clamp(3.5rem, 6vw, 5rem);
-  font-weight: 700;
-  color: var(--color-brass);
-  line-height: 1;
-}
-
-// ---- Card 2: The Night Shift (job grid) ----
-.card__visual--grid {
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  align-items: flex-start;
-  align-content: flex-start;
-}
-
-.card__job {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 10px;
-  border-radius: var(--radius-sm);
-  background-color: rgba(59, 42, 26, 0.05);
-  border: 1px solid rgba(59, 42, 26, 0.08);
-
-  &--active {
-    .card__job-dot {
-      background-color: var(--color-verdigris);
-      box-shadow: 0 0 4px rgba(46, 107, 90, 0.4);
-    }
-  }
-}
-
-.card__job-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background-color: rgba(59, 42, 26, 0.25);
-  flex-shrink: 0;
-}
-
-.card__job-name {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.02em;
-  color: var(--color-iron);
-}
-
-// ---- Card 3: The Human (portrait + chain) ----
-.card__visual--solo {
-  flex-direction: column;
-  align-items: center;
-  gap: 0;
-  justify-content: center;
-}
-
-.card__portrait {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid var(--color-brass);
-  flex-shrink: 0;
-}
-
-.card__portrait-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-}
-
-.card__chain {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0;
-  padding: var(--space-1) 0;
-}
-
-.card__chain-line {
-  width: 1px;
-  height: 12px;
-  background-color: rgba(59, 42, 26, 0.15);
-}
-
-.card__chain-label {
-  font-family: var(--font-mono);
-  font-size: 0.5625rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-iron);
-  padding: 2px 0;
-}
-
-.card__human {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-}
-
-.card__human-name {
-  font-family: var(--font-heading);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--color-ink);
-}
-
-.card__human-role {
-  font-family: var(--font-mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-iron);
 }

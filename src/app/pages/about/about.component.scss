@@ -27,9 +27,15 @@
     margin-bottom: var(--space-5);
   }
 
+  &__header,
+  &__section,
+  &__contact {
+    max-width: 68ch;
+  }
+
   &__intro {
     font-family: var(--font-body);
-    font-size: 1.0625rem;
+    font-size: 1.25rem;
     line-height: 1.7;
     color: var(--color-iron);
   }
@@ -43,6 +49,14 @@
     &:hover {
       color: var(--color-walnut);
     }
+  }
+
+  &__contact {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    color: var(--color-iron);
+    padding-top: var(--space-6);
+    border-top: 1px solid rgba(59, 42, 26, 0.14);
   }
 
   &__section {
