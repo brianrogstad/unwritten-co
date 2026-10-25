@@ -27,10 +27,8 @@
     margin-bottom: var(--space-5);
   }
 
-  &__header,
-  &__section,
-  &__contact {
-    max-width: 68ch;
+  > .container {
+    max-width: 800px;
   }
 
   &__intro {
