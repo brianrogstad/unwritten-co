@@ -26,6 +26,10 @@ jobs:
 
       - run: npm ci
 
+      # Threshold owner: unwritten-ops/projects/unwritten-co/specs/security-spec.md
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
+
       - run: npx ng build --base-href /
 
       - uses: actions/upload-pages-artifact@v3
