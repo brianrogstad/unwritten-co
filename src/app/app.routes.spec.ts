@@ -66,7 +66,7 @@ describe('app routes', () => {
     const el = page();
     expect(el.querySelector('h1')?.textContent?.trim()).toBe('Unwritten Co.');
     const headings = Array.from(el.querySelectorAll('h2')).map((h) => h.textContent?.trim());
-    expect(headings).toEqual(['The name', 'What we make', 'From idea to release', 'Tools and judgment', 'After launch', 'Working with us', 'The founder']);
+    expect(headings).toEqual(['The name', 'What we make', 'From idea to release', 'Tools and judgment', 'After launch', 'Working with us']);
     expect(el.querySelector('footer[role="contentinfo"]')).not.toBeNull();
     expect(el.querySelector('section[aria-label="Hero"]')).toBeNull();
   });
